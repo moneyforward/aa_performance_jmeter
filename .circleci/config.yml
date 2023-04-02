@@ -8,7 +8,7 @@ orbs:
 executors:
   circleci-jmeter:
     docker:
-      - image: justb4/jmeter:lastest
+      - image: justb4/jmeter:5.5
 
 workflows:
   nightly-test:
