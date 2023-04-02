@@ -28,7 +28,6 @@ jobs:
     circleci_ip_ranges: true # opts the job into the IP ranges feature
     steps:
       - checkout
-      - cmd_env
       - run:
           name: Make Results Directory
           command: mkdir results
