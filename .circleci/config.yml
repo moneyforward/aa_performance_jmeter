@@ -36,8 +36,8 @@ jobs:
           environment:
             ENVIRONMENT: CI
           command: |
-            cd aa_performance_jmeter/services/search_fixedasset/
-            "jmeter -n -t searchingTC4.jmx -l results/runResults.csv -e -o results"
+            cd 
+            "jmeter -n -t ./services/search_fixedasset/searchingTC4.jmx -l ./results/runResults.csv -e -o results"
       - store_artifacts:
           path: ./results
 
