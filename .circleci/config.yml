@@ -37,7 +37,7 @@ jobs:
             ENVIRONMENT: CI
           command: |
             pwd
-            cd ../services/search_fixasset/
+            cd ../services/search_fixedasset/
             "jmeter -n -t searchingTC4.jmx -l results/runResults.csv -e -o results"
       - store_artifacts:
           path: ./results
