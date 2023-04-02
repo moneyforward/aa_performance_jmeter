@@ -36,7 +36,7 @@ jobs:
           environment:
             ENVIRONMENT: CI
           command: |
-            "jmeter -n -t searchingTC4.jmx -l runResults.csv -e -o results"
+            "jmeter -n -t searchingTC4.jmx -l results/runResults.csv -e -o results"
       - store_artifacts:
           path: ./results
 
