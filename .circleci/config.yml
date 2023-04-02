@@ -1,0 +1,43 @@
+version: 2.1
+
+setup: true
+
+orbs:
+  aws-s3: circleci/aws-s3@3.0.0
+
+executors:
+  circleci-jmeter:
+    docker:
+      - image: justb4/jmeter:5.5
+
+workflows:
+  nightly-test:
+    when:
+      and:
+        - equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
+        - equal: [ nightly_build, << pipeline.schedule.name >> ]
+    jobs:
+      - job_test
+  common-test:
+    jobs:
+      - job_test
+
+jobs:
+  job_test:
+    executor: circleci-jmeter
+    circleci_ip_ranges: true # opts the job into the IP ranges feature
+    steps:
+      - checkout
+      - cmd_env
+      - run:
+          name: Make Results Directory
+          command: mkdir results
+      -run:
+          name: Run test
+          environment:
+            ENVIRONMENT: CI
+          command: |
+            "jmeter -n -t sampleTest.jmx -l results/runResults.csv -e -o results"
+      - store_artifacts:
+          path: ./results
+
