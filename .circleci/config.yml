@@ -8,7 +8,7 @@ orbs:
 executors:
   circleci-jmeter:
     docker:
-      - image: justb4/jmeter:latest
+      - image: justb4/jmeter:5.3
 
 workflows:
   nightly-test:
@@ -24,10 +24,8 @@ workflows:
 
 jobs:
   job_test:
-    # executor: circleci-jmeter
-    docker:
-      - image: justb4/jmeter:latest
-    #  circleci_ip_ranges: true # opts the job into the IP ranges feature
+    executor: circleci-jmeter
+    circleci_ip_ranges: true # opts the job into the IP ranges feature
     steps:
       - checkout
       - run:
