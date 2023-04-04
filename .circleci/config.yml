@@ -8,7 +8,7 @@ orbs:
 executors:
   circleci-jmeter:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/jmeter:5.5
   java-11:
     docker:
       - image: cimg/openjdk:11.0
