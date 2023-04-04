@@ -8,7 +8,7 @@ orbs:
 executors:
   circleci-jmeter:
     docker:
-      - image: justb4/jmeter:5.5
+      - image: justb4/jmeter:latest
 
 workflows:
   nightly-test:
@@ -33,8 +33,8 @@ jobs:
           command: mkdir results
       - run:
           name: Run test
-          environment:
-            ENVIRONMENT: CI
+          # environment:
+          #   ENVIRONMENT: CI
           command: |
             "jmeter -n -t searchingTC4.jmx -l runResults.csv -e -o results"
       - store_artifacts:
