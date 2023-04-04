@@ -36,7 +36,8 @@ jobs:
           # environment:
           #   ENVIRONMENT: CI
           command: |
-            "jmeter -n -t searchingTC4.jmx -l runResults.csv -e -o results"
+            export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/apache-jmeter-5.5/bin;
+            jmeter -n -t searchingTC4.jmx -l runResults.csv -e -o results;
       - store_artifacts:
           path: ./results
 
