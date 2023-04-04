@@ -29,7 +29,7 @@ workflows:
 jobs:
   job_test:
     executor: circleci-jmeter
-    executor: java-11
+    # executor: java-11
     circleci_ip_ranges: true # opts the job into the IP ranges feature
     steps:
       - checkout
