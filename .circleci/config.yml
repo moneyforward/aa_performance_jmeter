@@ -9,18 +9,18 @@ executors:
   circleci-jmeter:
     docker:
       - image: justb4/jmeter:latest
-  java-11:
-    docker:
-      - image: cimg/openjdk:11.0
+  # java-11:
+  #   docker:
+  #     - image: cimg/openjdk:11.0
 
 workflows:
-  nightly-test:
-    when:
-      and:
-        - equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
-        - equal: [ nightly_build, << pipeline.schedule.name >> ]
-    jobs:
-      - job_test
+  # nightly-test:
+  #   when:
+  #     and:
+  #       - equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
+  #       - equal: [ nightly_build, << pipeline.schedule.name >> ]
+    # jobs:
+    #   - job_test
   common-test:
     jobs:
       - job_test
