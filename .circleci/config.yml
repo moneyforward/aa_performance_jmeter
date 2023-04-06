@@ -2,8 +2,8 @@ version: 2.1
 parameters:
   running-file:
     type: enum
-    enum: [search_fixedasset/searchingTC4.jmx, search_fixedasset/searchingTC4.jmx]
-    default: search_fixedasset/searchingTC4.jmx
+    enum: [search_fixedasset/login.jmx, search_fixedasset/searchingTC4.jmx]
+    default: search_fixedasset/login.jmx
 
 setup: true
 
