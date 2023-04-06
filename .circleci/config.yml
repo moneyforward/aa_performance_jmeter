@@ -1,4 +1,9 @@
 version: 2.1
+parameters:
+  running-file:
+    type: enum
+    enum: [search_fixedasset/searchingTC4.jmx, search_fixedasset/searchingTC4.jmx]
+    default: search_fixedasset/searchingTC4.jmx
 
 setup: true
 
@@ -9,9 +14,6 @@ executors:
   circleci-jmeter:
     docker:
       - image: justb4/jmeter:5.5
-  # java-11:
-  #   docker:
-  #     - image: cimg/openjdk:11.0
 
 workflows:
   # nightly-test:
@@ -28,7 +30,6 @@ workflows:
 jobs:
   job_test:
     executor: circleci-jmeter
-    # executor: java-11
     circleci_ip_ranges: true # opts the job into the IP ranges feature
     steps:
       - checkout
@@ -37,10 +38,8 @@ jobs:
           command: mkdir results
       - run:
           name: Run test
-          # environment:
-          #   ENVIRONMENT: CI
           command: |
-            jmeter -n -t services/search_fixedasset/searchingTC4.jmx -l results/runResults.csv -e -o results;
+            jmeter -n -t services/<< pipeline.parameters.running-file >> -l results/runResults.csv -e -o results;
       - store_artifacts:
           path: ./results
 
