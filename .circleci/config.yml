@@ -37,6 +37,9 @@ jobs:
           name: Make Results Directory
           command: mkdir results
       - run:
+          name: Remove output login data
+          command: rm -rf services/search_fixedasset/ouput/acs2.csv
+      - run:
           name: Run test
           command: |
             jmeter -n -t services/<< pipeline.parameters.running-file >> -l results/runResults.csv -e -o results;
