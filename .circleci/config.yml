@@ -35,7 +35,7 @@ jobs:
           command: mkdir results
       - run:
           name: Remove output login data
-          command: rm -rf services/search_fixedasset/ouput/acs2.csv
+          command: rm -rf services/search_fixedasset/ouput/account.csv
       - run:
           name: Run test
           command: |
