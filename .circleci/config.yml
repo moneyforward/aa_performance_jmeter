@@ -2,7 +2,11 @@ version: 2.1
 parameters:
   running-file:
     type: enum
-    enum: [search_fixedasset/searching_full_flow.jmx, search_fixedasset/searchingTC4.jmx]
+    enum:
+      [
+        search_fixedasset/searching_full_flow.jmx,
+        search_fixedasset/searchingTC4.jmx,
+      ]
     default: search_fixedasset/searching_full_flow.jmx
 
 setup: true
@@ -16,13 +20,6 @@ executors:
       - image: justb4/jmeter:5.5
 
 workflows:
-  # nightly-test:
-  #   when:
-  #     and:
-  #       - equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
-  #       - equal: [ nightly_build, << pipeline.schedule.name >> ]
-    # jobs:
-    #   - job_test
   common-test:
     jobs:
       - job_test
@@ -45,4 +42,3 @@ jobs:
             jmeter -n -t services/<< pipeline.parameters.running-file >> -l results/runResults.csv -e -o results;
       - store_artifacts:
           path: ./results
-
