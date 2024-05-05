@@ -167,13 +167,13 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <intProp name="LoopController.loops">-1</intProp>
+          <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">9</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">5</stringProp>
         <longProp name="ThreadGroup.start_time">1373789594000</longProp>
         <longProp name="ThreadGroup.end_time">1373789594000</longProp>
-        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration">300</stringProp>
         <stringProp name="ThreadGroup.delay">10</stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
@@ -1001,12 +1001,653 @@ fstream.close();</stringProp>
           </RegexExtractor>
           <hashTree/>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="13. Register retirement fixed asset" enabled="true">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="13. Prepare data to execute bulk change" enabled="true">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
           <boolProp name="TransactionController.parent">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="13.1 Get list fixed asset biids" enabled="true">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="13.1 Cancel retirement fixed asset event" enabled="true">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+            <boolProp name="TransactionController.parent">false</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="13.1.1 Get term month id" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+    &quot;filter[time_date]&quot;: &quot;${retire_date}&quot;&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${host}</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">api/v1/accounting_periods/term_month_by_date</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">cookie</stringProp>
+                    <stringProp name="Header.value">${cookieOffice}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">x-csrf-token</stringProp>
+                    <stringProp name="Header.value">${csrf_token}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/json</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">origin</stringProp>
+                    <stringProp name="Header.value">${origin}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">referer</stringProp>
+                    <stringProp name="Header.value">${referer}</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="termMonthIdExtractor" enabled="true">
+                <stringProp name="JSONPostProcessor.referenceNames">term_month_id</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                <stringProp name="JSONPostProcessor.defaultValues">values_not_found</stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                <stringProp name="ConstantTimer.delay">1000</stringProp>
+              </ConstantTimer>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="13.1.2 Get the list retirement fixed asset event" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="term_month_id" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">${term_month_id}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                    <stringProp name="Argument.name">term_month_id</stringProp>
+                  </elementProp>
+                  <elementProp name="change_situation_code" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">${retire_code}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                    <stringProp name="Argument.name">change_situation_code</stringProp>
+                  </elementProp>
+                  <elementProp name="page[number]" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">1</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                    <stringProp name="Argument.name">page[number]</stringProp>
+                  </elementProp>
+                  <elementProp name="page[size]" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">50</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                    <stringProp name="Argument.name">page[size]</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${host}</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">api/v1/reports/fixed_asset_events</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">cookie</stringProp>
+                    <stringProp name="Header.value">${cookieOffice}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">x-csrf-token</stringProp>
+                    <stringProp name="Header.value">${csrf_token}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/json</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">origin</stringProp>
+                    <stringProp name="Header.value">${origin}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">referer</stringProp>
+                    <stringProp name="Header.value">${referer}</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="idExtractor" enabled="true">
+                <stringProp name="JSONPostProcessor.referenceNames">id;biid</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[*].id;$.data[*].biid</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers">-1;-1</stringProp>
+                <stringProp name="JSONPostProcessor.defaultValues">values_not_found;values_not_found</stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                <stringProp name="ConstantTimer.delay">10000</stringProp>
+              </ConstantTimer>
+              <hashTree/>
+            </hashTree>
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="13.1.3 If Controller" enabled="true">
+              <stringProp name="IfController.condition">&quot;${biid}&quot; != &quot;values_not_found&quot;</stringProp>
+              <boolProp name="IfController.evaluateAll">false</boolProp>
+            </IfController>
+            <hashTree>
+              <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="13.1.3 Cancel the retirement fixed asset event (FA 1 to 20)" enabled="true">
+                <boolProp name="TransactionController.includeTimers">false</boolProp>
+                <stringProp name="TestPlan.comments"> FA 1 to 20</stringProp>
+                <boolProp name="TransactionController.parent">false</boolProp>
+              </TransactionController>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="13.1.3.1 Send request to cancel the event" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">{ &quot;data&quot;:&#xd;
+  [	&#xd;
+  	{&quot;biid&quot;:&quot;${biid_1}&quot;,&quot;id&quot;: ${id_1}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_2}&quot;,&quot;id&quot;: ${id_2}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_3}&quot;,&quot;id&quot;: ${id_3}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_4}&quot;,&quot;id&quot;: ${id_4}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_5}&quot;,&quot;id&quot;: ${id_5}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_6}&quot;,&quot;id&quot;: ${id_6}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_7}&quot;,&quot;id&quot;: ${id_7}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_8}&quot;,&quot;id&quot;: ${id_8}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_9}&quot;,&quot;id&quot;: ${id_9}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_10}&quot;,&quot;id&quot;: ${id_10}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_11}&quot;,&quot;id&quot;: ${id_11}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_12}&quot;,&quot;id&quot;: ${id_12}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_13}&quot;,&quot;id&quot;: ${id_13}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_14}&quot;,&quot;id&quot;: ${id_14}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_15}&quot;,&quot;id&quot;: ${id_15}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_16}&quot;,&quot;id&quot;: ${id_16}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_17}&quot;,&quot;id&quot;: ${id_17}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_18}&quot;,&quot;id&quot;: ${id_18}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_19}&quot;,&quot;id&quot;: ${id_19}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_20}&quot;,&quot;id&quot;: ${id_20}}&#xd;
+   ]&#xd;
+}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol">https</stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">api/v1/fixed_assets/bulk_change/delete</stringProp>
+                  <stringProp name="HTTPSampler.method">DELETE</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                    <collectionProp name="HeaderManager.headers">
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">cookie</stringProp>
+                        <stringProp name="Header.value">${cookieOffice}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">x-csrf-token</stringProp>
+                        <stringProp name="Header.value">${csrf_token}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">content-type</stringProp>
+                        <stringProp name="Header.value">application/json</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">origin</stringProp>
+                        <stringProp name="Header.value">${origin}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">referer</stringProp>
+                        <stringProp name="Header.value">${referer_event}</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </HeaderManager>
+                  <hashTree/>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="idExtractor" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">async_id</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                    <stringProp name="JSONPostProcessor.defaultValues">values_not_found</stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                </hashTree>
+                <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="13.1.3.2 Async (cancel event)" enabled="true">
+                  <boolProp name="LoopController.continue_forever">true</boolProp>
+                  <intProp name="LoopController.loops">-1</intProp>
+                </LoopController>
+                <hashTree>
+                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="13.1.3.2 Async (cancel event)" enabled="true">
+                    <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
+                      <collectionProp name="Arguments.arguments"/>
+                    </elementProp>
+                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
+                    <stringProp name="HTTPSampler.port"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">https</stringProp>
+                    <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                    <stringProp name="HTTPSampler.path">/api/v1/asyncjob/${async_id}</stringProp>
+                    <stringProp name="HTTPSampler.method">GET</stringProp>
+                    <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                    <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                    <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                    <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                  </HTTPSamplerProxy>
+                  <hashTree>
+                    <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                      <collectionProp name="HeaderManager.headers">
+                        <elementProp name="" elementType="Header">
+                          <stringProp name="Header.name">cookie</stringProp>
+                          <stringProp name="Header.value">${cookieOffice}</stringProp>
+                        </elementProp>
+                        <elementProp name="" elementType="Header">
+                          <stringProp name="Header.name">x-csrf-token</stringProp>
+                          <stringProp name="Header.value">${csrf_token}</stringProp>
+                        </elementProp>
+                        <elementProp name="" elementType="Header">
+                          <stringProp name="Header.name">content-type</stringProp>
+                          <stringProp name="Header.value">application/json</stringProp>
+                        </elementProp>
+                        <elementProp name="" elementType="Header">
+                          <stringProp name="Header.name">origin</stringProp>
+                          <stringProp name="Header.value">${origin}</stringProp>
+                        </elementProp>
+                        <elementProp name="" elementType="Header">
+                          <stringProp name="Header.name">referer</stringProp>
+                          <stringProp name="Header.value">${referer}</stringProp>
+                        </elementProp>
+                      </collectionProp>
+                    </HeaderManager>
+                    <hashTree/>
+                    <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="statusExtractor" enabled="true">
+                      <stringProp name="JSONPostProcessor.referenceNames">status</stringProp>
+                      <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.status</stringProp>
+                      <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                      <stringProp name="JSONPostProcessor.defaultValues">values_not_found</stringProp>
+                    </JSONPostProcessor>
+                    <hashTree/>
+                  </hashTree>
+                  <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+                    <stringProp name="IfController.condition">&quot;${status}&quot; != &quot;WAITING&quot;</stringProp>
+                    <boolProp name="IfController.evaluateAll">false</boolProp>
+                  </IfController>
+                  <hashTree>
+                    <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+                      <intProp name="ActionProcessor.action">5</intProp>
+                      <intProp name="ActionProcessor.target">0</intProp>
+                      <stringProp name="ActionProcessor.duration">0</stringProp>
+                    </TestAction>
+                    <hashTree/>
+                  </hashTree>
+                </hashTree>
+              </hashTree>
+            </hashTree>
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="13.1.4 If Controller" enabled="true">
+              <stringProp name="IfController.condition">&quot;${biid}&quot; != &quot;values_not_found&quot;</stringProp>
+              <boolProp name="IfController.evaluateAll">false</boolProp>
+            </IfController>
+            <hashTree>
+              <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="13.1.4 Cancel the retirement fixed asset event (FA 21 to 40)" enabled="true">
+                <boolProp name="TransactionController.includeTimers">false</boolProp>
+                <stringProp name="TestPlan.comments"> FA 21 to 40</stringProp>
+                <boolProp name="TransactionController.parent">false</boolProp>
+              </TransactionController>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="13.1.4.1 Send request to cancel the event" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">{ &quot;data&quot;:&#xd;
+  [	&#xd;
+  	{&quot;biid&quot;:&quot;${biid_21}&quot;,&quot;id&quot;: ${id_21}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_22}&quot;,&quot;id&quot;: ${id_22}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_23}&quot;,&quot;id&quot;: ${id_23}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_24}&quot;,&quot;id&quot;: ${id_24}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_25}&quot;,&quot;id&quot;: ${id_25}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_26}&quot;,&quot;id&quot;: ${id_26}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_27}&quot;,&quot;id&quot;: ${id_27}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_28}&quot;,&quot;id&quot;: ${id_28}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_29}&quot;,&quot;id&quot;: ${id_29}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_30}&quot;,&quot;id&quot;: ${id_30}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_31}&quot;,&quot;id&quot;: ${id_31}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_32}&quot;,&quot;id&quot;: ${id_32}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_33}&quot;,&quot;id&quot;: ${id_33}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_34}&quot;,&quot;id&quot;: ${id_34}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_35}&quot;,&quot;id&quot;: ${id_35}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_36}&quot;,&quot;id&quot;: ${id_36}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_37}&quot;,&quot;id&quot;: ${id_37}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_38}&quot;,&quot;id&quot;: ${id_38}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_39}&quot;,&quot;id&quot;: ${id_39}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_40}&quot;,&quot;id&quot;: ${id_40}}&#xd;
+   ]&#xd;
+}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol">https</stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">api/v1/fixed_assets/bulk_change/delete</stringProp>
+                  <stringProp name="HTTPSampler.method">DELETE</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                    <collectionProp name="HeaderManager.headers">
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">cookie</stringProp>
+                        <stringProp name="Header.value">${cookieOffice}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">x-csrf-token</stringProp>
+                        <stringProp name="Header.value">${csrf_token}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">content-type</stringProp>
+                        <stringProp name="Header.value">application/json</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">origin</stringProp>
+                        <stringProp name="Header.value">${origin}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">referer</stringProp>
+                        <stringProp name="Header.value">${referer_event}</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </HeaderManager>
+                  <hashTree/>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="idExtractor" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">async_id</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                    <stringProp name="JSONPostProcessor.defaultValues">values_not_found</stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                </hashTree>
+                <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="13.1.4.2 Async (cancel event)" enabled="true">
+                  <boolProp name="LoopController.continue_forever">true</boolProp>
+                  <intProp name="LoopController.loops">-1</intProp>
+                </LoopController>
+                <hashTree>
+                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="13.1.4.2 (cancel event)" enabled="true">
+                    <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
+                      <collectionProp name="Arguments.arguments"/>
+                    </elementProp>
+                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
+                    <stringProp name="HTTPSampler.port"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">https</stringProp>
+                    <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                    <stringProp name="HTTPSampler.path">/api/v1/asyncjob/${async_id}</stringProp>
+                    <stringProp name="HTTPSampler.method">GET</stringProp>
+                    <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                    <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                    <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                    <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                  </HTTPSamplerProxy>
+                  <hashTree>
+                    <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                      <collectionProp name="HeaderManager.headers">
+                        <elementProp name="" elementType="Header">
+                          <stringProp name="Header.name">cookie</stringProp>
+                          <stringProp name="Header.value">${cookieOffice}</stringProp>
+                        </elementProp>
+                        <elementProp name="" elementType="Header">
+                          <stringProp name="Header.name">x-csrf-token</stringProp>
+                          <stringProp name="Header.value">${csrf_token}</stringProp>
+                        </elementProp>
+                        <elementProp name="" elementType="Header">
+                          <stringProp name="Header.name">content-type</stringProp>
+                          <stringProp name="Header.value">application/json</stringProp>
+                        </elementProp>
+                        <elementProp name="" elementType="Header">
+                          <stringProp name="Header.name">origin</stringProp>
+                          <stringProp name="Header.value">${origin}</stringProp>
+                        </elementProp>
+                        <elementProp name="" elementType="Header">
+                          <stringProp name="Header.name">referer</stringProp>
+                          <stringProp name="Header.value">${referer}</stringProp>
+                        </elementProp>
+                      </collectionProp>
+                    </HeaderManager>
+                    <hashTree/>
+                    <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="statusExtractor" enabled="true">
+                      <stringProp name="JSONPostProcessor.referenceNames">status</stringProp>
+                      <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.status</stringProp>
+                      <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                      <stringProp name="JSONPostProcessor.defaultValues">values_not_found</stringProp>
+                    </JSONPostProcessor>
+                    <hashTree/>
+                  </hashTree>
+                  <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+                    <stringProp name="IfController.condition">&quot;${status}&quot; != &quot;WAITING&quot;</stringProp>
+                    <boolProp name="IfController.evaluateAll">false</boolProp>
+                  </IfController>
+                  <hashTree>
+                    <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+                      <intProp name="ActionProcessor.action">5</intProp>
+                      <intProp name="ActionProcessor.target">0</intProp>
+                      <stringProp name="ActionProcessor.duration">0</stringProp>
+                    </TestAction>
+                    <hashTree/>
+                  </hashTree>
+                </hashTree>
+              </hashTree>
+            </hashTree>
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="13.1.5 If Controller" enabled="true">
+              <stringProp name="IfController.condition">&quot;${biid}&quot; != &quot;values_not_found&quot;</stringProp>
+              <boolProp name="IfController.evaluateAll">false</boolProp>
+            </IfController>
+            <hashTree>
+              <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="13.1.5 Cancel the retirement fixed asset event (FA 41 to 50)" enabled="true">
+                <boolProp name="TransactionController.includeTimers">false</boolProp>
+                <stringProp name="TestPlan.comments"> FA 41 to 50</stringProp>
+                <boolProp name="TransactionController.parent">false</boolProp>
+              </TransactionController>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="13.1.5.1 Send request to cancel the event" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">{ &quot;data&quot;:&#xd;
+  [	&#xd;
+  	{&quot;biid&quot;:&quot;${biid_41}&quot;,&quot;id&quot;: ${id_41}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_42}&quot;,&quot;id&quot;: ${id_42}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_43}&quot;,&quot;id&quot;: ${id_43}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_44}&quot;,&quot;id&quot;: ${id_44}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_45}&quot;,&quot;id&quot;: ${id_45}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_46}&quot;,&quot;id&quot;: ${id_46}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_47}&quot;,&quot;id&quot;: ${id_47}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_48}&quot;,&quot;id&quot;: ${id_48}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_49}&quot;,&quot;id&quot;: ${id_49}},&#xd;
+  	{&quot;biid&quot;:&quot;${biid_50}&quot;,&quot;id&quot;: ${id_50}}&#xd;
+   ]&#xd;
+}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol">https</stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">api/v1/fixed_assets/bulk_change/delete</stringProp>
+                  <stringProp name="HTTPSampler.method">DELETE</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                    <collectionProp name="HeaderManager.headers">
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">cookie</stringProp>
+                        <stringProp name="Header.value">${cookieOffice}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">x-csrf-token</stringProp>
+                        <stringProp name="Header.value">${csrf_token}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">content-type</stringProp>
+                        <stringProp name="Header.value">application/json</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">origin</stringProp>
+                        <stringProp name="Header.value">${origin}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">referer</stringProp>
+                        <stringProp name="Header.value">${referer_event}</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </HeaderManager>
+                  <hashTree/>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="idExtractor" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">async_id</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                    <stringProp name="JSONPostProcessor.defaultValues">values_not_found</stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                </hashTree>
+                <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="13.1.5.2 Async (cancel event)" enabled="true">
+                  <boolProp name="LoopController.continue_forever">true</boolProp>
+                  <intProp name="LoopController.loops">-1</intProp>
+                </LoopController>
+                <hashTree>
+                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="13.1.5.2 Async (cancel event)" enabled="true">
+                    <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
+                      <collectionProp name="Arguments.arguments"/>
+                    </elementProp>
+                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
+                    <stringProp name="HTTPSampler.port"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">https</stringProp>
+                    <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                    <stringProp name="HTTPSampler.path">/api/v1/asyncjob/${async_id}</stringProp>
+                    <stringProp name="HTTPSampler.method">GET</stringProp>
+                    <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                    <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                    <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                    <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                  </HTTPSamplerProxy>
+                  <hashTree>
+                    <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                      <collectionProp name="HeaderManager.headers">
+                        <elementProp name="" elementType="Header">
+                          <stringProp name="Header.name">cookie</stringProp>
+                          <stringProp name="Header.value">${cookieOffice}</stringProp>
+                        </elementProp>
+                        <elementProp name="" elementType="Header">
+                          <stringProp name="Header.name">x-csrf-token</stringProp>
+                          <stringProp name="Header.value">${csrf_token}</stringProp>
+                        </elementProp>
+                        <elementProp name="" elementType="Header">
+                          <stringProp name="Header.name">content-type</stringProp>
+                          <stringProp name="Header.value">application/json</stringProp>
+                        </elementProp>
+                        <elementProp name="" elementType="Header">
+                          <stringProp name="Header.name">origin</stringProp>
+                          <stringProp name="Header.value">${origin}</stringProp>
+                        </elementProp>
+                        <elementProp name="" elementType="Header">
+                          <stringProp name="Header.name">referer</stringProp>
+                          <stringProp name="Header.value">${referer}</stringProp>
+                        </elementProp>
+                      </collectionProp>
+                    </HeaderManager>
+                    <hashTree/>
+                    <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="statusExtractor" enabled="true">
+                      <stringProp name="JSONPostProcessor.referenceNames">status</stringProp>
+                      <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.status</stringProp>
+                      <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                      <stringProp name="JSONPostProcessor.defaultValues">values_not_found</stringProp>
+                    </JSONPostProcessor>
+                    <hashTree/>
+                  </hashTree>
+                  <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+                    <stringProp name="IfController.condition">&quot;${status}&quot; != &quot;WAITING&quot;</stringProp>
+                    <boolProp name="IfController.evaluateAll">false</boolProp>
+                  </IfController>
+                  <hashTree>
+                    <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+                      <intProp name="ActionProcessor.action">5</intProp>
+                      <intProp name="ActionProcessor.target">0</intProp>
+                      <stringProp name="ActionProcessor.duration">0</stringProp>
+                    </TestAction>
+                    <hashTree/>
+                  </hashTree>
+                </hashTree>
+              </hashTree>
+            </hashTree>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="13.2 Get list fixed asset biids" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
@@ -1017,7 +1658,7 @@ fstream.close();</stringProp>
 	&quot;filter[calculate_cost]&quot;:true,&#xd;
 	&quot;filter[name]&quot;:&quot;retirement&quot;,&#xd;
 	&quot;page[number]&quot;:1,&#xd;
-	&quot;page[size]&quot;:20&#xd;
+	&quot;page[size]&quot;:50&#xd;
 }&#xd;
 </stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
@@ -1106,7 +1747,7 @@ vars.put(&apos;today&apos;, currentDate);</stringProp>
             </ConstantTimer>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="13.2 Get the first retire cause id" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="13.3 Get the first retire cause id" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
@@ -1158,7 +1799,13 @@ vars.put(&apos;today&apos;, currentDate);</stringProp>
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="13.3 Send request to register retirement fixed asset" enabled="true">
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="14. Register retirement fixed asset" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="14.1 Send request to register retirement fixed asset" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
@@ -1167,7 +1814,7 @@ vars.put(&apos;today&apos;, currentDate);</stringProp>
                   <stringProp name="Argument.value">{&#xd;
   &quot;retired_at&quot;: &quot;${retire_date}&quot;,&#xd;
   &quot;event_cause_id&quot;: ${retire_cause_id},&#xd;
-  &quot;biids&quot;: [&quot;${biid_1}&quot;,&quot;${biid_2}&quot;,&quot;${biid_3}&quot;,&quot;${biid_4}&quot;,&quot;${biid_5}&quot;,&quot;${biid_6}&quot;,&quot;${biid_7}&quot;,&quot;${biid_8}&quot;,&quot;${biid_9}&quot;,&quot;${biid_10}&quot;,&quot;${biid_11}&quot;,&quot;${biid_12}&quot;,&quot;${biid_13}&quot;,&quot;${biid_14}&quot;,&quot;${biid_15}&quot;,&quot;${biid_16}&quot;,&quot;${biid_17}&quot;,&quot;${biid_18}&quot;,&quot;${biid_19}&quot;,&quot;${biid_20}&quot;]&#xd;
+  &quot;biids&quot;: [&quot;${biid_1}&quot;,&quot;${biid_2}&quot;,&quot;${biid_3}&quot;,&quot;${biid_4}&quot;,&quot;${biid_5}&quot;,&quot;${biid_6}&quot;,&quot;${biid_7}&quot;,&quot;${biid_8}&quot;,&quot;${biid_9}&quot;,&quot;${biid_10}&quot;,&quot;${biid_11}&quot;,&quot;${biid_12}&quot;,&quot;${biid_13}&quot;,&quot;${biid_14}&quot;,&quot;${biid_15}&quot;,&quot;${biid_16}&quot;,&quot;${biid_17}&quot;,&quot;${biid_18}&quot;,&quot;${biid_19}&quot;,&quot;${biid_20}&quot;,&quot;${biid_21}&quot;,&quot;${biid_22}&quot;,&quot;${biid_23}&quot;,&quot;${biid_24}&quot;,&quot;${biid_25}&quot;,&quot;${biid_26}&quot;,&quot;${biid_27}&quot;,&quot;${biid_28}&quot;,&quot;${biid_29}&quot;,&quot;${biid_30}&quot;,&quot;${biid_31}&quot;,&quot;${biid_32}&quot;,&quot;${biid_33}&quot;,&quot;${biid_34}&quot;,&quot;${biid_35}&quot;,&quot;${biid_36}&quot;,&quot;${biid_37}&quot;,&quot;${biid_38}&quot;,&quot;${biid_39}&quot;,&quot;${biid_40}&quot;,&quot;${biid_41}&quot;,&quot;${biid_42}&quot;,&quot;${biid_43}&quot;,&quot;${biid_44}&quot;,&quot;${biid_45}&quot;,&quot;${biid_46}&quot;,&quot;${biid_47}&quot;,&quot;${biid_48}&quot;,&quot;${biid_49}&quot;,&quot;${biid_50}&quot;]&#xd;
 }&#xd;
 </stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
@@ -1222,12 +1869,12 @@ vars.put(&apos;today&apos;, currentDate);</stringProp>
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="13.4 Async (register event)" enabled="true">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="14.2. Async (register event)" enabled="true">
             <boolProp name="LoopController.continue_forever">true</boolProp>
             <intProp name="LoopController.loops">-1</intProp>
           </LoopController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="13.4 Async (register event)" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="14.2 Async (register event)" enabled="true">
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
                 <collectionProp name="Arguments.arguments"/>
               </elementProp>
@@ -1293,20 +1940,18 @@ vars.put(&apos;today&apos;, currentDate);</stringProp>
             </hashTree>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="14 Cancel retirement fixed asset event" enabled="true">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="14. Register retirement fixed asset" enabled="false">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
           <boolProp name="TransactionController.parent">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="14.1 Get term month id" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="14.1 Send request to register retirement fixed asset" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&#xd;
-    &quot;filter[time_date]&quot;: &quot;${retire_date}&quot;&#xd;
-}</stringProp>
+                  <stringProp name="Argument.value">{&quot;retired_at&quot;:&quot;2024-02-15&quot;,&quot;event_cause_id&quot;:4936,&quot;biids&quot;:[&quot;01HS0KNSNZXGQMNZHXYACSRQXM&quot;,&quot;01HS0KNSVCGHE6VMCJ1Q0AH566&quot;,&quot;01HS0KNT0JKE053DPGX0T0M41J&quot;,&quot;01HS0KNT45XCBZ80FJSHQ7NVBJ&quot;,&quot;01HS0KNT84CVVHNWXHGQBCCK00&quot;,&quot;01HS0KNTBQCEE94GMBG85E3QN5&quot;,&quot;01HS0KNTFEAF3VMYG8DJXB5NZP&quot;,&quot;01HS0KNTK1W96JZHXAZFBJGFJR&quot;,&quot;01HS0KNTQ7TG9Y83BJY41AYWF2&quot;,&quot;01HS0KNTV259R6K48YXJGSM2BA&quot;,&quot;01HS0KNTZTAH7HY5WXVNFY7W98&quot;,&quot;01HS0KNV341XAFCYPFM2P28CE5&quot;,&quot;01HS0KNV7E7JRRCH7P1CGEW1P5&quot;,&quot;01HS0KNVBBRYQ912KWWWWHV7W1&quot;,&quot;01HS0KNVFA42B1DJFCTTHBZMS9&quot;,&quot;01HS0KNVK2CW5P85NY0HB8VH2Y&quot;,&quot;01HS0KNVPTRAD653NPYGFA5X09&quot;,&quot;01HS0KNVTFJTWRZ4YKBS44DJXC&quot;,&quot;01HS0KNVYDY7PDQNAPCB9Y0WRA&quot;]}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
@@ -1315,93 +1960,8 @@ vars.put(&apos;today&apos;, currentDate);</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">api/v1/accounting_periods/term_month_by_date</stringProp>
-            <stringProp name="HTTPSampler.method">POST</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-            <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          </HTTPSamplerProxy>
-          <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-              <collectionProp name="HeaderManager.headers">
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">cookie</stringProp>
-                  <stringProp name="Header.value">${cookieOffice}</stringProp>
-                </elementProp>
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">x-csrf-token</stringProp>
-                  <stringProp name="Header.value">${csrf_token}</stringProp>
-                </elementProp>
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">content-type</stringProp>
-                  <stringProp name="Header.value">application/json</stringProp>
-                </elementProp>
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">origin</stringProp>
-                  <stringProp name="Header.value">${origin}</stringProp>
-                </elementProp>
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">referer</stringProp>
-                  <stringProp name="Header.value">${referer}</stringProp>
-                </elementProp>
-              </collectionProp>
-            </HeaderManager>
-            <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="termMonthIdExtractor" enabled="true">
-              <stringProp name="JSONPostProcessor.referenceNames">term_month_id</stringProp>
-              <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
-              <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
-              <stringProp name="JSONPostProcessor.defaultValues">values_not_found</stringProp>
-            </JSONPostProcessor>
-            <hashTree/>
-            <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-              <stringProp name="ConstantTimer.delay">1000</stringProp>
-            </ConstantTimer>
-            <hashTree/>
-          </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="14.2 Get the list retirement fixed asset event" enabled="true">
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
-              <collectionProp name="Arguments.arguments">
-                <elementProp name="term_month_id" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">${term_month_id}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">term_month_id</stringProp>
-                </elementProp>
-                <elementProp name="change_situation_code" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">${retire_code}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">change_situation_code</stringProp>
-                </elementProp>
-                <elementProp name="page[number]" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">1</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">page[number]</stringProp>
-                </elementProp>
-                <elementProp name="page[size]" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">50</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">page[size]</stringProp>
-                </elementProp>
-              </collectionProp>
-            </elementProp>
-            <stringProp name="HTTPSampler.domain">${host}</stringProp>
-            <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
-            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">api/v1/reports/fixed_asset_events</stringProp>
-            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <stringProp name="HTTPSampler.path">/api/v1/fixed_assets/bulk_change/retire</stringProp>
+            <stringProp name="HTTPSampler.method">PUT</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -1437,180 +1997,81 @@ vars.put(&apos;today&apos;, currentDate);</stringProp>
             </HeaderManager>
             <hashTree/>
             <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="idExtractor" enabled="true">
-              <stringProp name="JSONPostProcessor.referenceNames">id;biid</stringProp>
-              <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[*].id;$.data[*].biid</stringProp>
-              <stringProp name="JSONPostProcessor.match_numbers">-1;-1</stringProp>
-              <stringProp name="JSONPostProcessor.defaultValues">values_not_found;values_not_found</stringProp>
+              <stringProp name="JSONPostProcessor.referenceNames">async_id</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+              <stringProp name="JSONPostProcessor.defaultValues">values_not_found</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-              <stringProp name="ConstantTimer.delay">10000</stringProp>
-            </ConstantTimer>
-            <hashTree/>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="14.3 If Controller" enabled="true">
-            <stringProp name="IfController.condition">&quot;${biid}&quot; != &quot;values_not_found&quot;</stringProp>
-            <boolProp name="IfController.evaluateAll">false</boolProp>
-          </IfController>
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="14.2. Async (register event)" enabled="true">
+            <boolProp name="LoopController.continue_forever">true</boolProp>
+            <intProp name="LoopController.loops">-1</intProp>
+          </LoopController>
           <hashTree>
-            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="14.3 Cancel the retirement fixed asset event" enabled="true">
-              <boolProp name="TransactionController.includeTimers">false</boolProp>
-              <stringProp name="TestPlan.comments"> FA 1 to 20</stringProp>
-              <boolProp name="TransactionController.parent">false</boolProp>
-            </TransactionController>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="14.2 Async (register event)" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${host}</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/api/v1/asyncjob/${async_id}</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
             <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="14.3.1 Send request to cancel the event" enabled="true">
-                <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-                <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-                  <collectionProp name="Arguments.arguments">
-                    <elementProp name="" elementType="HTTPArgument">
-                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                      <stringProp name="Argument.value">{ &quot;data&quot;:&#xd;
-  [	&#xd;
-  	{&quot;biid&quot;:&quot;${biid_1}&quot;,&quot;id&quot;: ${id_1}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_2}&quot;,&quot;id&quot;: ${id_2}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_3}&quot;,&quot;id&quot;: ${id_3}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_4}&quot;,&quot;id&quot;: ${id_4}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_5}&quot;,&quot;id&quot;: ${id_5}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_6}&quot;,&quot;id&quot;: ${id_6}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_7}&quot;,&quot;id&quot;: ${id_7}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_8}&quot;,&quot;id&quot;: ${id_8}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_9}&quot;,&quot;id&quot;: ${id_9}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_10}&quot;,&quot;id&quot;: ${id_10}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_11}&quot;,&quot;id&quot;: ${id_11}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_12}&quot;,&quot;id&quot;: ${id_12}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_13}&quot;,&quot;id&quot;: ${id_13}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_14}&quot;,&quot;id&quot;: ${id_14}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_15}&quot;,&quot;id&quot;: ${id_15}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_16}&quot;,&quot;id&quot;: ${id_16}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_17}&quot;,&quot;id&quot;: ${id_17}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_18}&quot;,&quot;id&quot;: ${id_18}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_19}&quot;,&quot;id&quot;: ${id_19}},&#xd;
-  	{&quot;biid&quot;:&quot;${biid_20}&quot;,&quot;id&quot;: ${id_20}}&#xd;
-   ]&#xd;
-}</stringProp>
-                      <stringProp name="Argument.metadata">=</stringProp>
-                    </elementProp>
-                  </collectionProp>
-                </elementProp>
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port"></stringProp>
-                <stringProp name="HTTPSampler.protocol">https</stringProp>
-                <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">api/v1/fixed_assets/bulk_change/delete</stringProp>
-                <stringProp name="HTTPSampler.method">DELETE</stringProp>
-                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-                <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              </HTTPSamplerProxy>
-              <hashTree>
-                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                  <collectionProp name="HeaderManager.headers">
-                    <elementProp name="" elementType="Header">
-                      <stringProp name="Header.name">cookie</stringProp>
-                      <stringProp name="Header.value">${cookieOffice}</stringProp>
-                    </elementProp>
-                    <elementProp name="" elementType="Header">
-                      <stringProp name="Header.name">x-csrf-token</stringProp>
-                      <stringProp name="Header.value">${csrf_token}</stringProp>
-                    </elementProp>
-                    <elementProp name="" elementType="Header">
-                      <stringProp name="Header.name">content-type</stringProp>
-                      <stringProp name="Header.value">application/json</stringProp>
-                    </elementProp>
-                    <elementProp name="" elementType="Header">
-                      <stringProp name="Header.name">origin</stringProp>
-                      <stringProp name="Header.value">${origin}</stringProp>
-                    </elementProp>
-                    <elementProp name="" elementType="Header">
-                      <stringProp name="Header.name">referer</stringProp>
-                      <stringProp name="Header.value">${referer_event}</stringProp>
-                    </elementProp>
-                  </collectionProp>
-                </HeaderManager>
-                <hashTree/>
-                <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="idExtractor" enabled="true">
-                  <stringProp name="JSONPostProcessor.referenceNames">async_id</stringProp>
-                  <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
-                  <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
-                  <stringProp name="JSONPostProcessor.defaultValues">values_not_found</stringProp>
-                </JSONPostProcessor>
-                <hashTree/>
-              </hashTree>
-              <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="14.3.2 Async (cancel event)" enabled="true">
-                <boolProp name="LoopController.continue_forever">true</boolProp>
-                <intProp name="LoopController.loops">-1</intProp>
-              </LoopController>
-              <hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="14.3.2 Async (cancel event)" enabled="true">
-                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
-                    <collectionProp name="Arguments.arguments"/>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">cookie</stringProp>
+                    <stringProp name="Header.value">${cookieOffice}</stringProp>
                   </elementProp>
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.port"></stringProp>
-                  <stringProp name="HTTPSampler.protocol">https</stringProp>
-                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                  <stringProp name="HTTPSampler.path">/api/v1/asyncjob/${async_id}</stringProp>
-                  <stringProp name="HTTPSampler.method">GET</stringProp>
-                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
-                </HTTPSamplerProxy>
-                <hashTree>
-                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                    <collectionProp name="HeaderManager.headers">
-                      <elementProp name="" elementType="Header">
-                        <stringProp name="Header.name">cookie</stringProp>
-                        <stringProp name="Header.value">${cookieOffice}</stringProp>
-                      </elementProp>
-                      <elementProp name="" elementType="Header">
-                        <stringProp name="Header.name">x-csrf-token</stringProp>
-                        <stringProp name="Header.value">${csrf_token}</stringProp>
-                      </elementProp>
-                      <elementProp name="" elementType="Header">
-                        <stringProp name="Header.name">content-type</stringProp>
-                        <stringProp name="Header.value">application/json</stringProp>
-                      </elementProp>
-                      <elementProp name="" elementType="Header">
-                        <stringProp name="Header.name">origin</stringProp>
-                        <stringProp name="Header.value">${origin}</stringProp>
-                      </elementProp>
-                      <elementProp name="" elementType="Header">
-                        <stringProp name="Header.name">referer</stringProp>
-                        <stringProp name="Header.value">${referer}</stringProp>
-                      </elementProp>
-                    </collectionProp>
-                  </HeaderManager>
-                  <hashTree/>
-                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="statusExtractor" enabled="true">
-                    <stringProp name="JSONPostProcessor.referenceNames">status</stringProp>
-                    <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.status</stringProp>
-                    <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
-                    <stringProp name="JSONPostProcessor.defaultValues">values_not_found</stringProp>
-                  </JSONPostProcessor>
-                  <hashTree/>
-                </hashTree>
-                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
-                  <stringProp name="IfController.condition">&quot;${status}&quot; != &quot;WAITING&quot;</stringProp>
-                  <boolProp name="IfController.evaluateAll">false</boolProp>
-                </IfController>
-                <hashTree>
-                  <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-                    <intProp name="ActionProcessor.action">5</intProp>
-                    <intProp name="ActionProcessor.target">0</intProp>
-                    <stringProp name="ActionProcessor.duration">0</stringProp>
-                  </TestAction>
-                  <hashTree/>
-                </hashTree>
-              </hashTree>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">x-csrf-token</stringProp>
+                    <stringProp name="Header.value">${csrf_token}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/json</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">origin</stringProp>
+                    <stringProp name="Header.value">${origin}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">referer</stringProp>
+                    <stringProp name="Header.value">${referer}</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="statusExtractor" enabled="true">
+                <stringProp name="JSONPostProcessor.referenceNames">status</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.status</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                <stringProp name="JSONPostProcessor.defaultValues">values_not_found</stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+              <stringProp name="IfController.condition">&quot;${status}&quot; != &quot;WAITING&quot;</stringProp>
+              <boolProp name="IfController.evaluateAll">false</boolProp>
+            </IfController>
+            <hashTree>
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+                <intProp name="ActionProcessor.action">5</intProp>
+                <intProp name="ActionProcessor.target">0</intProp>
+                <stringProp name="ActionProcessor.duration">0</stringProp>
+              </TestAction>
+              <hashTree/>
             </hashTree>
           </hashTree>
         </hashTree>
