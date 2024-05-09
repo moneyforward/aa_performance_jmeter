@@ -109,7 +109,7 @@
             </collectionProp>
           </elementProp>
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf8</stringProp>
           <stringProp name="HTTPSampler.path">/api/v1/sessions/mfid</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -161,8 +161,8 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-  &quot;filter[name]&quot;: &quot;D30&quot;,&#xd;
-  &quot;filter[valid_at]&quot;: &quot;2020-04-01&quot;,&#xd;
+  &quot;filter[name]&quot;: &quot;D&quot;,&#xd;
+  &quot;filter[valid_at]&quot;: &quot;2022-04-01&quot;,&#xd;
   &quot;filter[calculate_cost]&quot;: true,&#xd;
   &quot;page[number]&quot;: 1,&#xd;
   &quot;page[size]&quot;: 50,&#xd;
@@ -176,7 +176,7 @@
             </collectionProp>
           </elementProp>
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
           <stringProp name="HTTPSampler.path">/api/v1/search/fixed_assets</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -205,14 +205,6 @@
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">content-type</stringProp>
                 <stringProp name="Header.value">application/json</stringProp>
-              </elementProp>
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">origin</stringProp>
-                <stringProp name="Header.value">https://asset-accounting.mfvn.dev</stringProp>
-              </elementProp>
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">referer</stringProp>
-                <stringProp name="Header.value">https://asset-accounting.mfvn.dev/assets</stringProp>
               </elementProp>
             </collectionProp>
           </HeaderManager>
