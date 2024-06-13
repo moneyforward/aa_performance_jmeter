@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.0 r1840935">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="AA-Bulk-Change-Impairment-csv-import" enabled="true">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="AA-Bulk-Change-movement-csv-import" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
@@ -88,40 +88,27 @@
             <stringProp name="Argument.name">fa_file</stringProp>
             <stringProp name="Argument.value">/Users/mfv-hn-computer-0047/aa_performance_jmeter/data/bulk_change/perf_fixed_asset_normal_start_usage.csv</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">change this value to your path</stringProp>
           </elementProp>
-          <elementProp name="file_50" elementType="Argument">
-            <stringProp name="Argument.name">file_50</stringProp>
-            <stringProp name="Argument.value">/Users/mfv-hn-computer-0047/aa_performance_jmeter/data/bulk_change/impairment/fixed_assets_impairment_utf8_50.csv</stringProp>
+          <elementProp name="file_import" elementType="Argument">
+            <stringProp name="Argument.name">file_import</stringProp>
+            <stringProp name="Argument.value">/Users/mfv-hn-computer-0047/aa_performance_jmeter/data/bulk_change/movement/fixed_assets_movement_utf8.csv</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="file_60" elementType="Argument">
-            <stringProp name="Argument.name">file_60</stringProp>
-            <stringProp name="Argument.value">/Users/mfv-hn-computer-0047/aa_performance_jmeter/data/bulk_change/impairment/fixed_assets_impairment_utf8_60.csv</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="file_100" elementType="Argument">
-            <stringProp name="Argument.name">file_100</stringProp>
-            <stringProp name="Argument.value">/Users/mfv-hn-computer-0047/aa_performance_jmeter/data/bulk_change/impairment/fixed_assets_impairment_utf8_100.csv</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="file_150" elementType="Argument">
-            <stringProp name="Argument.name">file_150</stringProp>
-            <stringProp name="Argument.value">/Users/mfv-hn-computer-0047/aa_performance_jmeter/data/bulk_change/impairment/fixed_assets_impairment_utf8_150.csv</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">change this value to your path</stringProp>
           </elementProp>
           <elementProp name="event_type" elementType="Argument">
             <stringProp name="Argument.name">event_type</stringProp>
-            <stringProp name="Argument.value">60</stringProp>
+            <stringProp name="Argument.value">30</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="impair_cause_type" elementType="Argument">
-            <stringProp name="Argument.name">impair_cause_type</stringProp>
-            <stringProp name="Argument.value">40</stringProp>
+          <elementProp name="change_situation_code" elementType="Argument">
+            <stringProp name="Argument.name">change_situation_code</stringProp>
+            <stringProp name="Argument.value">50</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="impair_date" elementType="Argument">
-            <stringProp name="Argument.name">impair_date</stringProp>
-            <stringProp name="Argument.value">2020-03-31</stringProp>
+          <elementProp name="move_at" elementType="Argument">
+            <stringProp name="Argument.name">move_at</stringProp>
+            <stringProp name="Argument.value">2023-06-04</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="account" elementType="Argument">
@@ -194,30 +181,37 @@
             <stringProp name="Argument.name">fa_file</stringProp>
             <stringProp name="Argument.value">/Users/mfv-hn-computer-0047/aa_performance_jmeter/data/bulk_change/perf_fixed_asset_normal_start_usage.csv</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">change this value to your path</stringProp>
           </elementProp>
           <elementProp name="file_import" elementType="Argument">
             <stringProp name="Argument.name">file_import</stringProp>
-            <stringProp name="Argument.value">/Users/mfv-hn-computer-0047/aa_performance_jmeter/data/bulk_change/impairment/fixed_assets_impairment_utf8.csv</stringProp>
+            <stringProp name="Argument.value">/Users/mfv-hn-computer-0047/aa_performance_jmeter/data/bulk_change/movement/fixed_assets_movement_utf8.csv</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">change this value to your path</stringProp>
           </elementProp>
           <elementProp name="event_type" elementType="Argument">
             <stringProp name="Argument.name">event_type</stringProp>
-            <stringProp name="Argument.value">60</stringProp>
+            <stringProp name="Argument.value">30</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="impair_cause_type" elementType="Argument">
-            <stringProp name="Argument.name">impair_cause_type</stringProp>
-            <stringProp name="Argument.value">40</stringProp>
+          <elementProp name="change_situation_code" elementType="Argument">
+            <stringProp name="Argument.name">change_situation_code</stringProp>
+            <stringProp name="Argument.value">50</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="impair_date" elementType="Argument">
-            <stringProp name="Argument.name">impair_date</stringProp>
-            <stringProp name="Argument.value">2020-03-31</stringProp>
+          <elementProp name="move_at" elementType="Argument">
+            <stringProp name="Argument.name">move_at</stringProp>
+            <stringProp name="Argument.value">2023-06-04</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="account" elementType="Argument">
             <stringProp name="Argument.name">account</stringProp>
             <stringProp name="Argument.value">Account</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="select_account" elementType="Argument">
+            <stringProp name="Argument.name">select_account</stringProp>
+            <stringProp name="Argument.value">true</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -256,7 +250,7 @@
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="loginData" enabled="true">
         <stringProp name="delimiter">,</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
-        <stringProp name="filename">/Users/mfv-hn-computer-0047/aa_performance_jmeter/data/login/login_data_bulk_change_stg_1.csv</stringProp>
+        <stringProp name="filename">/Users/mfv-hn-computer-0047/aa_performance_jmeter/data/login/login_data_bulk_change_stg.csv</stringProp>
         <boolProp name="quotedData">false</boolProp>
         <boolProp name="recycle">true</boolProp>
         <stringProp name="shareMode">shareMode.all</stringProp>
@@ -265,13 +259,13 @@
         <boolProp name="ignoreFirstLine">false</boolProp>
       </CSVDataSet>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Register impairment event" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Register movement event" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.num_threads">3</stringProp>
         <stringProp name="ThreadGroup.ramp_time">10</stringProp>
         <longProp name="ThreadGroup.start_time">1373789594000</longProp>
         <longProp name="ThreadGroup.end_time">1373789594000</longProp>
@@ -1053,7 +1047,7 @@ import java.util.Arrays;
 import java.io.Writer;
 import com.eclipsesource.json.*;
 
-File file = new File(&quot;/Users/mfv-hn-computer-0032/Documents/Performancetest/AA/Taxdeclaration/acc2.csv&quot;);
+File file = new File(&quot;/Users/mfv-hn-computer-0047/aa_performance_jmeter/data/login/acc_stg.csv&quot;);
 FileWriter fstream = new FileWriter(file, true);
 BufferedWriter out = new BufferedWriter(fstream);
 response_Header = ctx.getPreviousResult().getResponseHeaders(); 
@@ -1109,12 +1103,12 @@ fstream.close();</stringProp>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2. Register impairment event" enabled="true">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2. Register register event" enabled="true">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
           <boolProp name="TransactionController.parent">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.1 Validate import event csv file" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.1 Validate import event csv file" enabled="true">
             <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
               <collectionProp name="HTTPFileArgs.files">
                 <elementProp name="${file_import}" elementType="HTTPFileArg">
@@ -1194,8 +1188,16 @@ fstream.close();</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">values_not_found</stringProp>
             </JSONPostProcessor>
             <hashTree/>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script"></stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.2 Register  impair event by importing" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.2 Register movement event by importing" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
@@ -1257,12 +1259,12 @@ fstream.close();</stringProp>
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="3.3. Async ( register event)" enabled="true">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="2.3. Async ( register event)" enabled="true">
             <boolProp name="LoopController.continue_forever">true</boolProp>
             <intProp name="LoopController.loops">-1</intProp>
           </LoopController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.3. Async ( register event)" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.3. Async ( register event)" enabled="true">
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
                 <collectionProp name="Arguments.arguments"/>
               </elementProp>
@@ -1334,10 +1336,10 @@ fstream.close();</stringProp>
         </hashTree>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">5</stringProp>
         </LoopController>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="3. Bulk-change: Cancel impair event" enabled="true">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="3. Bulk-change: Cancel movement event" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
             <boolProp name="TransactionController.parent">false</boolProp>
           </TransactionController>
@@ -1349,7 +1351,7 @@ fstream.close();</stringProp>
                   <elementProp name="" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
                     <stringProp name="Argument.value">{&#xd;
-    &quot;filter[time_date]&quot;: &quot;${impair_date}&quot;&#xd;
+    &quot;filter[time_date]&quot;: &quot;${move_at}&quot;&#xd;
 }</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                   </elementProp>
@@ -1407,7 +1409,7 @@ fstream.close();</stringProp>
               </ConstantTimer>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.2 Get the list sale fixed asset event" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.2 Get the list movement fixed asset event" enabled="true">
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
                 <collectionProp name="Arguments.arguments">
                   <elementProp name="term_month_id" elementType="HTTPArgument">
@@ -1419,7 +1421,7 @@ fstream.close();</stringProp>
                   </elementProp>
                   <elementProp name="change_situation_code" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${event_type}</stringProp>
+                    <stringProp name="Argument.value">${change_situation_code}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">change_situation_code</stringProp>
@@ -1488,12 +1490,12 @@ fstream.close();</stringProp>
               </JSONPostProcessor>
               <hashTree/>
             </hashTree>
-            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="3.3 Start cancel impair event" enabled="true">
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="3.3 Start cancel movement event" enabled="true">
               <boolProp name="TransactionController.includeTimers">false</boolProp>
               <boolProp name="TransactionController.parent">false</boolProp>
             </TransactionController>
             <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.3.1 Send request to Cancel sale event" enabled="true">
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.3.1 Send request to Cancel movement event" enabled="true">
                 <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
                   <collectionProp name="Arguments.arguments">
@@ -1580,7 +1582,7 @@ fstream.close();</stringProp>
                 <intProp name="LoopController.loops">-1</intProp>
               </LoopController>
               <hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.3.2 Async (cancel event)" enabled="true">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="5.3.2 Async (cancel event)" enabled="true">
                   <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
                     <collectionProp name="Arguments.arguments"/>
                   </elementProp>
