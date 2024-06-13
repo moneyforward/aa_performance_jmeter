@@ -6,8 +6,10 @@ parameters:
       [
         search_fixedasset/searching_full_flow.jmx,
         search_fixedasset/searchingTC4.jmx,
+        searching/searchStagingLoginMultipleTime.jmx,
+        searching/searchBetaBypassLogin.jmx
       ]
-    default: search_fixedasset/searching_full_flow.jmx
+    default: searching/searchStagingLoginMultipleTime.jmx
 
 setup: true
 
