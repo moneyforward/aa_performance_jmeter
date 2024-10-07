@@ -41,6 +41,7 @@ jobs:
       - run:
           name: Conduct performance test
           command: |
+            ls -la
             echo "List all workspaces"
             ./qapf lists
             echo "Create workspace"
