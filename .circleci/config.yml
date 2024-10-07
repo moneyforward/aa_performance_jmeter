@@ -25,8 +25,8 @@ workflows:
 jobs:
   job_test:
     docker:
-      - image: ubuntu-2204:2023.07.1
-    circleci_ip_ranges: true # opts the job into the IP ranges feature
+      - image: cimg/base:current
+    # circleci_ip_ranges: true # opts the job into the IP ranges feature
     resource_class: arm.medium
     steps:
       - checkout
