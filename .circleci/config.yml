@@ -27,6 +27,7 @@ jobs:
     docker:
       - image: cimg/base:current
     circleci_ip_ranges: true # opts the job into the IP ranges feature
+    resource_class: arm.medium
     steps:
       - checkout
       - jq/install
