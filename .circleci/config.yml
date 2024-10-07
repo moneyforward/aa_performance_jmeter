@@ -15,11 +15,7 @@ setup: true
 
 orbs:
   aws-s3: circleci/aws-s3@3.0.0
-
-executors:
-  circleci-jmeter:
-    docker:
-      - image: justb4/jmeter:5.5
+  jq: circleci/jq@2.2.0
 
 workflows:
   common-test:
@@ -28,10 +24,12 @@ workflows:
 
 jobs:
   job_test:
-    executor: circleci-jmeter
+    docker:
+      - image: cimg/base:current
     circleci_ip_ranges: true # opts the job into the IP ranges feature
     steps:
       - checkout
+      - jq/install
       - run:
           name: qapf-tools
           command: |
