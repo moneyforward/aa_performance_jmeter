@@ -15,20 +15,37 @@ setup: true
 
 orbs:
   aws-s3: circleci/aws-s3@3.0.0
+  aws-cli: circleci/aws-cli@4.0.0
+  aws-eks: circleci/aws-eks@2.2
+  kubernetes: circleci/kubernetes@1.3
   jq: circleci/jq@2.2.0
 
 workflows:
   common-test:
     jobs:
-      - job_test
+      - job_test:
+          context:
+            - deploy-role-load-test-cluster
 
 jobs:
   job_test:
     docker:
       - image: cimg/base:current
-    # circleci_ip_ranges: true # opts the job into the IP ranges feature
+    environment:
+      AWS_DEFAULT_REGION: ap-northeast-1
+      AWS_ACCOUNT_ID: "056699753121"
     steps:
       - checkout
+      - aws-cli/setup:
+          role_arn: ${AWS_ROLE_ARN}
+          profile_name: "OIDC_PROFILE"
+          session_duration: "1800"
+      - kubernetes/install-kubectl:
+          kubectl-version: v1.22.0
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: "load-test-cluster"
+          aws-profile: "OIDC_PROFILE"
+          aws-region: ${AWS_DEFAULT_REGION}
       - jq/install
       - run:
           name: install qapf-tools
