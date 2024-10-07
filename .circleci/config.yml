@@ -35,7 +35,7 @@ jobs:
       - run:
           name: qapf-tools
           command: |
-            ./qapf-tools.sh
+            .circleci/qapf-tools.sh
       # - run:
       #     name: Make Results Directory
       #     command: mkdir results
