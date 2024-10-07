@@ -62,9 +62,9 @@ jobs:
             echo "List all workspaces"
             ./qapf lists
             echo "Create workspace"
-            ./qapf create-workspace -w ${CIRCLE_PROJECT_REPONAME}
+            ./qapf create-workspace ${CIRCLE_PROJECT_REPONAME}
             echo "Delete workspace"
-            ./qapf delete-workspace -w ${CIRCLE_PROJECT_REPONAME}
+            ./qapf delete-workspace ${CIRCLE_PROJECT_REPONAME}
       # - run:
       #     name: Make Results Directory
       #     command: mkdir results
