@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "Intall GH CLI"
-pip3 install yq
-curl -sSL https://github.com/cli/cli/releases/download/v2.6.0/gh_2.6.0_linux_amd64.tar.gz -o gh_2.6.0_linux_amd64.tar.gz
-tar xvf gh_2.6.0_linux_amd64.tar.gz
-cp gh_2.6.0_linux_amd64/bin/gh /usr/local/bin/
+echo "Download qapf"
+asseturl=$(curl -H "Authorization: token ${token}" https://api.github.com/repos/moneyforward/cqoo-qapf/releases/latest | jq -r '.assets[] | select(.name=="qapf.zip") | .url')
+curl -L -H "Authorization: token ${token}" -H "Accept:application/octet-stream" ${asseturl} >qapf.zip
+unzip qapf.zip
+chmod +x qapf
