@@ -38,13 +38,13 @@ jobs:
       - jq/install
       - aws-cli/setup:
           role_arn: ${AWS_ROLE_ARN}
-          profile_name: "OIDC_PROFILE"
+          profile_name: "qa-service-platform"
           session_duration: "1800"
       - kubernetes/install-kubectl:
           kubectl-version: v1.22.0
       - aws-eks/update-kubeconfig-with-authenticator:
           cluster-name: "load-test-cluster"
-          aws-profile: "OIDC_PROFILE"
+          aws-profile: "qa-service-platform"
           aws-region: ${AWS_DEFAULT_REGION}
       - run:
           name: install qapf-tools
