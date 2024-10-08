@@ -14,7 +14,6 @@ parameters:
 setup: true
 
 orbs:
-  aws-s3: circleci/aws-s3@3.0.0
   aws-cli: circleci/aws-cli@4.0.0
   aws-eks: circleci/aws-eks@2.2
   kubernetes: circleci/kubernetes@1.3
@@ -36,6 +35,7 @@ jobs:
       AWS_ACCOUNT_ID: "056699753121"
     steps:
       - checkout
+      - jq/install
       - aws-cli/setup:
           role_arn: ${AWS_ROLE_ARN}
           profile_name: "OIDC_PROFILE"
@@ -46,12 +46,11 @@ jobs:
           cluster-name: "load-test-cluster"
           aws-profile: "OIDC_PROFILE"
           aws-region: ${AWS_DEFAULT_REGION}
-      - jq/install
       - run:
           name: install qapf-tools
           command: |
             echo "Download qapf"
-            asseturl=$(curl -H "Authorization: token ${MINAMI_GITHUB_TOKEN}" https://api.github.com/repos/moneyforward/load-test-manifests/releases/latest | jq -r '.assets[] | select(.name=="qapf.zip") | .url')
+            asseturl=$(curl -H "Authorization: token ${MINAMI_GITHUB_TOKEN}" https://api.github.com/repos/moneyforward/cqoo-qapf/releases/latest | jq -r '.assets[] | select(.name=="qapf.zip") | .url')
             curl -L -H "Authorization: token ${MINAMI_GITHUB_TOKEN}" -H "Accept:application/octet-stream" ${asseturl} >qapf.zip
             unzip qapf.zip
             chmod +x ./qapf
@@ -62,9 +61,11 @@ jobs:
             echo "List all workspaces"
             ./qapf lists
             echo "Create workspace"
-            ./qapf create-workspace ${CIRCLE_PROJECT_REPONAME}
-            echo "Delete workspace"
-            ./qapf delete-workspace ${CIRCLE_PROJECT_REPONAME}
+            ./qapf create-workspace aa-performance-jmeter
+            # ./qapf upload-test-scenarios -w aa-performance-jmeter -t jmeter -d ./*
+            # Table16_1_LoginOTP.jmx
+            echo "Remove workspace"
+            ./qapf remove-workspace aa-performance-jmeter
       # - run:
       #     name: Make Results Directory
       #     command: mkdir results
