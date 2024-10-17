@@ -59,7 +59,7 @@ workflows:
       - performance-test:
           context:
             - deploy-role-load-test-cluster
-          filters:
-            branches:
-              only:
-                - main
+          # filters:
+          #   branches:
+          #     only:
+          #       - main
