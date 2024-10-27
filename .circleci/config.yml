@@ -1,4 +1,23 @@
-version: 2.1
+version: 2.
+parameters:
+  running-file:
+    type: enum
+    enum:
+      [
+        bulk_change/AA-Bulk_Change-ChangeAssetType.jmx,
+        bulk_change/AA-Bulk_Change-Impairment_Cancel_Event.jmx,
+        bulk_change/AA-Bulk_Change-Movement_Cancel_Event.jmx,
+        bulk_change/AA-Bulk_Change-Movement_Register_Event.jmx,
+        bulk_change/AA-Bulk_Change-Retirement_Cancel_Event.jmx,
+        bulk_change/AA-Bulk_Change-Retirement_Register_Event.jmx,
+        bulk_change/AA-Bulk_Change-Sale_Cancel_Event.jmx,
+        bulk_change/AA-Bulk_Change-StartUsage_Register_Event.jmx,
+        tax_declaration/tax_declaration.jmx,
+        corporate_tax/Table16_1_LoginOTP.jmx,
+      ]
+    default: searching/searchStagingLoginMultipleTime.jmx
+
+setup: true
 orbs:
   aws-cli: circleci/aws-cli@4.0.0
   aws-eks: circleci/aws-eks@2.2
@@ -51,7 +70,7 @@ jobs:
             ./qapf prepare-testing-environment -w aa-performance-jmeter -t jmeter -c ./jmeter-config.yaml
 
             echo "Conduct performance test"
-            ./qapf conduct-perf-test -w aa-performance-jmeter -t jmeter -f services/corporate_tax/Table16_1_LoginOTP.jmx -s mfv_performance_test_notifications
+            ./qapf conduct-perf-test -w aa-performance-jmeter -t jmeter -f services/<< pipeline.parameters.running-file >> -s mfv_performance_test_notifications
 
 workflows:
   aa-performance-test:
