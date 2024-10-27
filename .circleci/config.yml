@@ -15,7 +15,7 @@ parameters:
         tax_declaration/tax_declaration.jmx,
         corporate_tax/Table16_1_LoginOTP.jmx,
       ]
-    default: searching/searchStagingLoginMultipleTime.jmx
+    default: corporate_tax/Table16_1_LoginOTP.jmx
 
 setup: true
 orbs:
