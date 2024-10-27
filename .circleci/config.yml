@@ -14,6 +14,15 @@ parameters:
         bulk_change/AA-Bulk_Change-StartUsage_Register_Event.jmx,
         tax_declaration/tax_declaration.jmx,
         corporate_tax/Table16_1_LoginOTP.jmx,
+        corporate_tax/Table16_1.jmx,
+        corporate_tax/Table16_4.jmx,
+        corporate_tax/Table16_7.jmx,
+        bulk_change_import/AA-Bulk_Change-ChangeAssetType_CSV_Import.jmx,
+        bulk_change_import/AA-Bulk_Change-Impairment_CSV_Import.jmx,
+        bulk_change_import/AA-Bulk_Change-Movement_CSV_Import.jmx,
+        bulk_change_import/AA-Bulk_Change-Retirement_CSV_Import.jmx,
+        bulk_change_import/AA-Bulk_Change-Sale_CSV_Import.jmx,
+        bulk_change_import/AA-Bulk_Change-StartUsage_CSV_Import.jmx,
       ]
     default: corporate_tax/Table16_1_LoginOTP.jmx
 
