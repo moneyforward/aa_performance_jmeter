@@ -1,12 +1,10 @@
 version: 2.1
 parameters:
   threads:
-    type: enum
-    enum: [1, 2, 5, 10]
+    type: integer
     default: 10
   duration:
-    type: enum
-    enum: [300, 600]
+    type: integer
     default: 600
   running-file:
     type: enum
