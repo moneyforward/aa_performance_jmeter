@@ -95,6 +95,11 @@
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc"></stringProp>
           </elementProp>
+          <elementProp name="ccu" elementType="Argument">
+            <stringProp name="Argument.name">ccu</stringProp>
+            <stringProp name="Argument.value"></stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
@@ -130,9 +135,9 @@
       </CacheManager>
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Change asset type event">
-        <intProp name="ThreadGroup.num_threads">10</intProp>
+        <stringProp name="ThreadGroup.num_threads">${__P(threads,)}</stringProp>
         <intProp name="ThreadGroup.ramp_time">50</intProp>
-        <longProp name="ThreadGroup.duration">600</longProp>
+        <stringProp name="ThreadGroup.duration">${__P(duration,)}</stringProp>
         <longProp name="ThreadGroup.delay">10</longProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
@@ -143,7 +148,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager - Inherit cookie" enabled="true">
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager - Inherit cookie">
           <collectionProp name="CookieManager.cookies"/>
           <boolProp name="CookieManager.clearEachIteration">false</boolProp>
           <boolProp name="CookieManager.controlledByThreadGroup">true</boolProp>
@@ -163,7 +168,7 @@
           <boolProp name="ignoreFirstLine">false</boolProp>
         </CSVDataSet>
         <hashTree/>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="1. Login" enabled="true">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="1. Login">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
@@ -1275,7 +1280,7 @@ vars.put(&quot;today&quot;, currentDate);</stringProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.1 Send request to bulk change asset type" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.1 Send request to bulk change asset type">
             <stringProp name="HTTPSampler.domain">${host}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/api/v1/fixed_assets/bulk_change/asset_type</stringProp>
@@ -1530,7 +1535,7 @@ vars.put(&quot;today&quot;, currentDate);</stringProp>
             </hashTree>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="5. Bulk change asset type - depreciable property and corporate tax" enabled="true">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="5. Bulk change asset type - depreciable property and corporate tax">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
