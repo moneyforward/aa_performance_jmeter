@@ -136,7 +136,7 @@
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Change asset type event">
         <stringProp name="ThreadGroup.num_threads">${__P(threads,)}</stringProp>
-        <intProp name="ThreadGroup.ramp_time">50</intProp>
+        <stringProp name="ThreadGroup.ramp_time">${__P(rampup,)}</stringProp>
         <stringProp name="ThreadGroup.duration">${__P(duration,)}</stringProp>
         <longProp name="ThreadGroup.delay">10</longProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
@@ -1866,7 +1866,7 @@ vars.put(&quot;today&quot;, currentDate);</stringProp>
         </UniformRandomTimer>
         <hashTree/>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
