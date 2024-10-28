@@ -78,6 +78,9 @@ jobs:
       - run:
           name: Conduct performance test
           command: |
+            echo "Remove old workspace"
+            ./qapf remove-workspace aa-performance-jmeter
+
             echo "Create workspace"
             ./qapf create-workspace aa-performance-jmeter
 
