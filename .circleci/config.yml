@@ -79,7 +79,7 @@ jobs:
             ./qapf prepare-testing-environment -w aa-performance-jmeter -t jmeter -c ./jmeter-config.yaml
 
             echo "Conduct performance test"
-            ./qapf conduct-perf-test -w aa-performance-jmeter -t jmeter -f services/<< pipeline.parameters.running-file >> -s mfv_aa_performance_report
+            ./qapf conduct-perf-test -w aa-performance-jmeter -t jmeter -f services/<< pipeline.parameters.running-file >> -s mfv_aa_performance_notifications
 
 workflows:
   aa-performance-test:
