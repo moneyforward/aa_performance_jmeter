@@ -1,14 +1,5 @@
 version: 2.1
 parameters:
-  threads:
-    type: integer
-    default: 10
-  duration:
-    type: integer
-    default: 600
-  rampup:
-    type: integer
-    default: 50
   running-file:
     type: enum
     enum:
@@ -91,7 +82,7 @@ jobs:
             ./qapf prepare-testing-environment -w aa-performance-jmeter -t jmeter -c ./jmeter-config.yaml
 
             echo "Conduct performance test"
-            ./qapf conduct-perf-test -w aa-performance-jmeter -t jmeter -Jthreads=<< pipeline.parameters.threads >> -Jrampup=<< pipeline.parameters.rampup >> -Jduration=<< pipeline.parameters.duration >>-f services/<< pipeline.parameters.running-file >> -s mfv_aa_performance_notifications
+            ./qapf conduct-perf-test -w aa-performance-jmeter -t jmeter -f services/<< pipeline.parameters.running-file >> -s mfv_aa_performance_notifications
 
 workflows:
   aa-performance-test:

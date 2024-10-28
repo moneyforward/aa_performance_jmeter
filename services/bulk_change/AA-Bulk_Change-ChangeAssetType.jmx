@@ -135,9 +135,9 @@
       </CacheManager>
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Change asset type event">
-        <stringProp name="ThreadGroup.num_threads">${__P(threads,)}</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">${__P(rampup,)}</stringProp>
-        <stringProp name="ThreadGroup.duration">${__P(duration,)}</stringProp>
+        <intProp name="ThreadGroup.num_threads">10</intProp>
+        <intProp name="ThreadGroup.ramp_time">50</intProp>
+        <longProp name="ThreadGroup.duration">600</longProp>
         <longProp name="ThreadGroup.delay">10</longProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
