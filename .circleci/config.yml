@@ -24,7 +24,7 @@ parameters:
         bulk_change_import/AA-Bulk_Change-Sale_CSV_Import.jmx,
         bulk_change_import/AA-Bulk_Change-StartUsage_CSV_Import.jmx,
       ]
-    default: corporate_tax/Table16_1_LoginOTP.jmx
+    default: tax_declaration/tax_declaration.jmx
 
 setup: true
 orbs:
