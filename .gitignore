@@ -4,7 +4,7 @@
 **/*.log
 **/output/*
 /runResults/*
-**/results/ 
+/results/*
 reports/*
 log/*
 qapf
