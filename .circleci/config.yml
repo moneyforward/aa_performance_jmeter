@@ -69,6 +69,9 @@ jobs:
       - run:
           name: Conduct performance test
           command: |
+            echo "Remove workspace"
+            ./qapf remove-workspace aa-performance-jmeter
+
             echo "Create workspace"
             ./qapf create-workspace aa-performance-jmeter
 
@@ -79,7 +82,7 @@ jobs:
             ./qapf prepare-testing-environment -w aa-performance-jmeter -t jmeter -c ./jmeter-config.yaml
 
             echo "Conduct performance test"
-            ./qapf conduct-perf-test -w aa-performance-jmeter -t jmeter -f services/<< pipeline.parameters.running-file >> -s mfv_performance_test_notifications
+            ./qapf conduct-perf-test -w aa-performance-jmeter -t jmeter -f services/<< pipeline.parameters.running-file >> -s mfv_aa_performance_notifications
 
 workflows:
   aa-performance-test:
