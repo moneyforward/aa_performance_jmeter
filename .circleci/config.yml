@@ -2,7 +2,7 @@ version: 2.1
 parameters:
   threads:
     type: integer
-    default: 3
+    default: 10
   duration:
     type: integer
     default: 300
