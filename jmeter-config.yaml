@@ -1,0 +1,4 @@
+parallelism: 1
+cpu: 1
+memory: 2Gi
+jvmArgs: -Xmn256m -Xms512m -Xmx1g -XX:MaxMetaspaceSize=256m
