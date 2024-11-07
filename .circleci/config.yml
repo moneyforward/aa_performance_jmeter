@@ -23,6 +23,7 @@ parameters:
         corporate_tax/Table16_1.jmx,
         corporate_tax/Table16_4.jmx,
         corporate_tax/Table16_7.jmx,
+        corporate_tax/Table16_8.jmx,
         bulk_change_import/AA-Bulk_Change-ChangeAssetType_CSV_Import.jmx,
         bulk_change_import/AA-Bulk_Change-Impairment_CSV_Import.jmx,
         bulk_change_import/AA-Bulk_Change-Movement_CSV_Import.jmx,
