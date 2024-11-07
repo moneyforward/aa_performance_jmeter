@@ -65,7 +65,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables STG" enabled="true">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables STG">
         <collectionProp name="Arguments.arguments">
           <elementProp name="mfid_host" elementType="Argument">
             <stringProp name="Argument.name">mfid_host</stringProp>
@@ -115,7 +115,7 @@
           </elementProp>
           <elementProp name="report_template_id" elementType="Argument">
             <stringProp name="Argument.name">report_template_id</stringProp>
-            <stringProp name="Argument.value">1</stringProp>
+            <stringProp name="Argument.value">8</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="by_asset_type" elementType="Argument">
@@ -126,26 +126,6 @@
           <elementProp name="by_asset_category" elementType="Argument">
             <stringProp name="Argument.name">by_asset_category</stringProp>
             <stringProp name="Argument.value">2</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="page1" elementType="Argument">
-            <stringProp name="Argument.name">page1</stringProp>
-            <stringProp name="Argument.value">10,11,12,13</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="page2" elementType="Argument">
-            <stringProp name="Argument.name">page2</stringProp>
-            <stringProp name="Argument.value">14,15,16,17</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="page3" elementType="Argument">
-            <stringProp name="Argument.name">page3</stringProp>
-            <stringProp name="Argument.value">20,30,40,50</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="page4" elementType="Argument">
-            <stringProp name="Argument.name">page4</stringProp>
-            <stringProp name="Argument.value">60,99</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="pdf_format" elementType="Argument">
@@ -163,20 +143,15 @@
             <stringProp name="Argument.value">shift_jis</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="sum_ids" elementType="Argument">
-            <stringProp name="Argument.name">sum_ids</stringProp>
-            <stringProp name="Argument.value">10,11,12,13,14,15,16,17,20,30,40,50,60,999</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
           <elementProp name="login_user" elementType="Argument">
             <stringProp name="Argument.name">login_user</stringProp>
-            <stringProp name="Argument.value">../../data/login/login_data_corporateTax_stg_report1.csv</stringProp>
+            <stringProp name="Argument.value">../../data/login/login_data_corporateTax_stg_report8.csv</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
         <collectionProp name="HeaderManager.headers">
           <elementProp name="User-Agent" elementType="Header">
             <stringProp name="Header.name">User-Agent</stringProp>
@@ -207,8 +182,8 @@
         <boolProp name="CacheManager.controlledByThread">false</boolProp>
       </CacheManager>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Corporate Tax - Table 16(1)">
-        <intProp name="ThreadGroup.num_threads">7</intProp>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Corporate Tax - Table 16(8)">
+        <intProp name="ThreadGroup.num_threads">6</intProp>
         <intProp name="ThreadGroup.ramp_time">5</intProp>
         <longProp name="ThreadGroup.duration">1200</longProp>
         <longProp name="ThreadGroup.delay">10</longProp>
@@ -1224,8 +1199,7 @@ if (csvFile.canWrite()) {
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2. Export report" enabled="true">
-          <boolProp name="TransactionController.parent">true</boolProp>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2. Export report">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
@@ -1279,12 +1253,11 @@ if (csvFile.canWrite()) {
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2.2 Preview report - by asset type" enabled="false">
-            <boolProp name="TransactionController.parent">true</boolProp>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2.2 By asset type">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.2.1 Get report - by asset type - page 1" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.2.1 Get report " enabled="true">
               <stringProp name="HTTPSampler.domain">${host}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
@@ -1315,13 +1288,6 @@ if (csvFile.canWrite()) {
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">report_type</stringProp>
                   </elementProp>
-                  <elementProp name="asset_type_codes" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${page1}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">asset_type_codes</stringProp>
-                  </elementProp>
                 </collectionProp>
               </elementProp>
             </HTTPSamplerProxy>
@@ -1356,335 +1322,56 @@ if (csvFile.canWrite()) {
               </ConstantTimer>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.2.2 Get report - by asset type - page 2" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.protocol">https</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-              <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/data</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="term_id" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${term_id}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">term_id</stringProp>
-                  </elementProp>
-                  <elementProp name="report_template_id" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${report_template_id}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_template_id</stringProp>
-                  </elementProp>
-                  <elementProp name="report_type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${by_asset_type}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_type</stringProp>
-                  </elementProp>
-                  <elementProp name="asset_type_codes" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${page2}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">asset_type_codes</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-            </HTTPSamplerProxy>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2.2.2 Export to PDF report - by asset type">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+            </TransactionController>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                <collectionProp name="HeaderManager.headers">
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">cookie</stringProp>
-                    <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">x-csrf-token</stringProp>
-                    <stringProp name="Header.value">${csrfToken}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">content-type</stringProp>
-                    <stringProp name="Header.value">application/json</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">origin</stringProp>
-                    <stringProp name="Header.value">${origin}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">referer</stringProp>
-                    <stringProp name="Header.value">${origin}/asset</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </HeaderManager>
-              <hashTree/>
-              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                <stringProp name="ConstantTimer.delay">10000</stringProp>
-              </ConstantTimer>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.3.3 Get report - by asset type - page 3" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.protocol">https</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-              <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/data</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="term_id" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${term_id}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">term_id</stringProp>
-                  </elementProp>
-                  <elementProp name="report_template_id" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${report_template_id}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_template_id</stringProp>
-                  </elementProp>
-                  <elementProp name="report_type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${by_asset_type}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_type</stringProp>
-                  </elementProp>
-                  <elementProp name="asset_type_codes" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${page3}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">asset_type_codes</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                <collectionProp name="HeaderManager.headers">
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">cookie</stringProp>
-                    <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">x-csrf-token</stringProp>
-                    <stringProp name="Header.value">${csrfToken}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">content-type</stringProp>
-                    <stringProp name="Header.value">application/json</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">origin</stringProp>
-                    <stringProp name="Header.value">${origin}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">referer</stringProp>
-                    <stringProp name="Header.value">${origin}/asset</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </HeaderManager>
-              <hashTree/>
-              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                <stringProp name="ConstantTimer.delay">10000</stringProp>
-              </ConstantTimer>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4.4 Get report - by asset type - page 4" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.protocol">https</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-              <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/data</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="term_id" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${term_id}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">term_id</stringProp>
-                  </elementProp>
-                  <elementProp name="report_template_id" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${report_template_id}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_template_id</stringProp>
-                  </elementProp>
-                  <elementProp name="report_type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${by_asset_type}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_type</stringProp>
-                  </elementProp>
-                  <elementProp name="asset_type_codes" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${page4}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">asset_type_codes</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                <collectionProp name="HeaderManager.headers">
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">cookie</stringProp>
-                    <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">x-csrf-token</stringProp>
-                    <stringProp name="Header.value">${csrfToken}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">content-type</stringProp>
-                    <stringProp name="Header.value">application/json</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">origin</stringProp>
-                    <stringProp name="Header.value">${origin}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">referer</stringProp>
-                    <stringProp name="Header.value">${origin}/asset</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </HeaderManager>
-              <hashTree/>
-              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                <stringProp name="ConstantTimer.delay">10000</stringProp>
-              </ConstantTimer>
-              <hashTree/>
-            </hashTree>
-          </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2.3 Export to PDF report - by asset type" enabled="true">
-            <boolProp name="TransactionController.parent">true</boolProp>
-            <boolProp name="TransactionController.includeTimers">false</boolProp>
-          </TransactionController>
-          <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.3.1 Export to PDF report - by asset type" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.protocol">https</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-              <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/export</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="term_id" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${term_id}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">term_id</stringProp>
-                  </elementProp>
-                  <elementProp name="report_template_id" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${report_template_id}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_template_id</stringProp>
-                  </elementProp>
-                  <elementProp name="export_file_format" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${pdf_format}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">export_file_format</stringProp>
-                  </elementProp>
-                  <elementProp name="charset" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${charset}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">charset</stringProp>
-                  </elementProp>
-                  <elementProp name="report_type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${by_asset_type}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_type</stringProp>
-                  </elementProp>
-                  <elementProp name="sum_ids" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${sum_ids}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">sum_ids</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                <collectionProp name="HeaderManager.headers">
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">cookie</stringProp>
-                    <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">x-csrf-token</stringProp>
-                    <stringProp name="Header.value">${csrfToken}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">content-type</stringProp>
-                    <stringProp name="Header.value">application/json</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">origin</stringProp>
-                    <stringProp name="Header.value">${origin}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">referer</stringProp>
-                    <stringProp name="Header.value">${origin}/asset</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </HeaderManager>
-              <hashTree/>
-              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                <stringProp name="ConstantTimer.delay">10000</stringProp>
-              </ConstantTimer>
-              <hashTree/>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="asyncExtractor" enabled="true">
-                <stringProp name="JSONPostProcessor.referenceNames">async_id</stringProp>
-                <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
-                <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
-                <stringProp name="JSONPostProcessor.defaultValues">value_not_found</stringProp>
-              </JSONPostProcessor>
-              <hashTree/>
-            </hashTree>
-            <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
-              <intProp name="LoopController.loops">-1</intProp>
-            </LoopController>
-            <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.3.2 Export to PDF report - by asset type - async job" enabled="true">
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.2.2.1 Export to PDF report - by asset type">
                 <stringProp name="HTTPSampler.domain">${host}</stringProp>
                 <stringProp name="HTTPSampler.protocol">https</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-                <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/job/${async_id}</stringProp>
+                <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/export</stringProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                 <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-                  <collectionProp name="Arguments.arguments"/>
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="term_id" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${term_id}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">term_id</stringProp>
+                    </elementProp>
+                    <elementProp name="report_template_id" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${report_template_id}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">report_template_id</stringProp>
+                    </elementProp>
+                    <elementProp name="export_file_format" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${pdf_format}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">export_file_format</stringProp>
+                    </elementProp>
+                    <elementProp name="charset" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${charset}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">charset</stringProp>
+                    </elementProp>
+                    <elementProp name="report_type" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${by_asset_type}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">report_type</stringProp>
+                    </elementProp>
+                  </collectionProp>
                 </elementProp>
               </HTTPSamplerProxy>
               <hashTree>
@@ -1717,39 +1404,252 @@ if (csvFile.canWrite()) {
                   <stringProp name="ConstantTimer.delay">10000</stringProp>
                 </ConstantTimer>
                 <hashTree/>
-                <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="statusExtractor" enabled="true">
-                  <stringProp name="JSONPostProcessor.referenceNames">status</stringProp>
-                  <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.status</stringProp>
+                <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="asyncExtractor">
+                  <stringProp name="JSONPostProcessor.referenceNames">async_id</stringProp>
+                  <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
                   <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
                   <stringProp name="JSONPostProcessor.defaultValues">value_not_found</stringProp>
                 </JSONPostProcessor>
                 <hashTree/>
               </hashTree>
-              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
-                <stringProp name="IfController.condition">&quot;${status}&quot; != &quot;WAITING&quot;</stringProp>
-                <boolProp name="IfController.evaluateAll">false</boolProp>
-                <boolProp name="IfController.useExpression">false</boolProp>
-              </IfController>
+              <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+                <intProp name="LoopController.loops">-1</intProp>
+              </LoopController>
               <hashTree>
-                <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-                  <intProp name="ActionProcessor.action">5</intProp>
-                  <intProp name="ActionProcessor.target">0</intProp>
-                  <stringProp name="ActionProcessor.duration">0</stringProp>
-                </TestAction>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.2.2.2 Export to PDF report - by asset type - async job" enabled="true">
+                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
+                  <stringProp name="HTTPSampler.protocol">https</stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+                  <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/job/${async_id}</stringProp>
+                  <stringProp name="HTTPSampler.method">GET</stringProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                    <collectionProp name="Arguments.arguments"/>
+                  </elementProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                    <collectionProp name="HeaderManager.headers">
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">cookie</stringProp>
+                        <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">x-csrf-token</stringProp>
+                        <stringProp name="Header.value">${csrfToken}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">content-type</stringProp>
+                        <stringProp name="Header.value">application/json</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">origin</stringProp>
+                        <stringProp name="Header.value">${origin}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">referer</stringProp>
+                        <stringProp name="Header.value">${origin}/asset</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </HeaderManager>
+                  <hashTree/>
+                  <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                    <stringProp name="ConstantTimer.delay">10000</stringProp>
+                  </ConstantTimer>
+                  <hashTree/>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="statusExtractor" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">status</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.status</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                    <stringProp name="JSONPostProcessor.defaultValues">value_not_found</stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                </hashTree>
+                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+                  <stringProp name="IfController.condition">&quot;${status}&quot; != &quot;WAITING&quot;</stringProp>
+                  <boolProp name="IfController.evaluateAll">false</boolProp>
+                  <boolProp name="IfController.useExpression">false</boolProp>
+                </IfController>
+                <hashTree>
+                  <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+                    <intProp name="ActionProcessor.action">5</intProp>
+                    <intProp name="ActionProcessor.target">0</intProp>
+                    <stringProp name="ActionProcessor.duration">0</stringProp>
+                  </TestAction>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+            </hashTree>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2.2.3 Export to CSV report - by asset type" enabled="true">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+            </TransactionController>
+            <hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.2.3.1 Export to CSV report - by asset type">
+                <stringProp name="HTTPSampler.domain">${host}</stringProp>
+                <stringProp name="HTTPSampler.protocol">https</stringProp>
+                <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+                <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/export</stringProp>
+                <stringProp name="HTTPSampler.method">GET</stringProp>
+                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="term_id" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${term_id}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">term_id</stringProp>
+                    </elementProp>
+                    <elementProp name="report_template_id" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${report_template_id}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">report_template_id</stringProp>
+                    </elementProp>
+                    <elementProp name="export_file_format" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${pdf_format}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">export_file_format</stringProp>
+                    </elementProp>
+                    <elementProp name="charset" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${charset}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">charset</stringProp>
+                    </elementProp>
+                    <elementProp name="report_type" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${by_asset_type}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">report_type</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </elementProp>
+              </HTTPSamplerProxy>
+              <hashTree>
+                <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                  <stringProp name="ConstantTimer.delay">10000</stringProp>
+                </ConstantTimer>
                 <hashTree/>
+                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                  <collectionProp name="HeaderManager.headers">
+                    <elementProp name="" elementType="Header">
+                      <stringProp name="Header.name">cookie</stringProp>
+                      <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
+                    </elementProp>
+                    <elementProp name="" elementType="Header">
+                      <stringProp name="Header.name">x-csrf-token</stringProp>
+                      <stringProp name="Header.value">${csrfToken}</stringProp>
+                    </elementProp>
+                    <elementProp name="" elementType="Header">
+                      <stringProp name="Header.name">content-type</stringProp>
+                      <stringProp name="Header.value">application/json</stringProp>
+                    </elementProp>
+                    <elementProp name="" elementType="Header">
+                      <stringProp name="Header.name">origin</stringProp>
+                      <stringProp name="Header.value">${origin}</stringProp>
+                    </elementProp>
+                    <elementProp name="" elementType="Header">
+                      <stringProp name="Header.name">referer</stringProp>
+                      <stringProp name="Header.value">${origin}/asset</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </HeaderManager>
+                <hashTree/>
+                <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="asyncExtractor" enabled="true">
+                  <stringProp name="JSONPostProcessor.referenceNames">async_id</stringProp>
+                  <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
+                  <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                  <stringProp name="JSONPostProcessor.defaultValues">value_not_found</stringProp>
+                </JSONPostProcessor>
+                <hashTree/>
+              </hashTree>
+              <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+                <intProp name="LoopController.loops">-1</intProp>
+              </LoopController>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.2.3.2 Export to CSV report - by asset type - async job" enabled="true">
+                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
+                  <stringProp name="HTTPSampler.protocol">https</stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+                  <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/job/${async_id}</stringProp>
+                  <stringProp name="HTTPSampler.method">GET</stringProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                    <collectionProp name="Arguments.arguments"/>
+                  </elementProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                    <collectionProp name="HeaderManager.headers">
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">cookie</stringProp>
+                        <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">x-csrf-token</stringProp>
+                        <stringProp name="Header.value">${csrfToken}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">content-type</stringProp>
+                        <stringProp name="Header.value">application/json</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">origin</stringProp>
+                        <stringProp name="Header.value">${origin}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">referer</stringProp>
+                        <stringProp name="Header.value">${origin}/asset</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </HeaderManager>
+                  <hashTree/>
+                  <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                    <stringProp name="ConstantTimer.delay">10000</stringProp>
+                  </ConstantTimer>
+                  <hashTree/>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="statusExtractor" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">status</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.status</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                    <stringProp name="JSONPostProcessor.defaultValues">value_not_found</stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                </hashTree>
+                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+                  <stringProp name="IfController.condition">&quot;${status}&quot; != &quot;WAITING&quot;</stringProp>
+                  <boolProp name="IfController.evaluateAll">false</boolProp>
+                  <boolProp name="IfController.useExpression">false</boolProp>
+                </IfController>
+                <hashTree>
+                  <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+                    <intProp name="ActionProcessor.action">5</intProp>
+                    <intProp name="ActionProcessor.target">0</intProp>
+                    <stringProp name="ActionProcessor.duration">0</stringProp>
+                  </TestAction>
+                  <hashTree/>
+                </hashTree>
               </hashTree>
             </hashTree>
           </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2.4 Export to CSV report - by asset type" enabled="false">
-            <boolProp name="TransactionController.parent">true</boolProp>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2.3. By asset category">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4.1 Export to CSV report - by asset type" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.3.1 Get asset category associated to the corporate report">
               <stringProp name="HTTPSampler.domain">${host}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-              <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/export</stringProp>
+              <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/asset_categories</stringProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
               <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
@@ -1769,42 +1669,10 @@ if (csvFile.canWrite()) {
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">report_template_id</stringProp>
                   </elementProp>
-                  <elementProp name="export_file_format" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${pdf_format}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">export_file_format</stringProp>
-                  </elementProp>
-                  <elementProp name="charset" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${charset}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">charset</stringProp>
-                  </elementProp>
-                  <elementProp name="report_type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${by_asset_type}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_type</stringProp>
-                  </elementProp>
-                  <elementProp name="sum_ids" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${sum_ids}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">sum_ids</stringProp>
-                  </elementProp>
                 </collectionProp>
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                <stringProp name="ConstantTimer.delay">10000</stringProp>
-              </ConstantTimer>
-              <hashTree/>
               <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="" elementType="Header">
@@ -1830,28 +1698,140 @@ if (csvFile.canWrite()) {
                 </collectionProp>
               </HeaderManager>
               <hashTree/>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="asyncExtractor" enabled="true">
-                <stringProp name="JSONPostProcessor.referenceNames">async_id</stringProp>
-                <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
+              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer">
+                <stringProp name="ConstantTimer.delay">10000</stringProp>
+              </ConstantTimer>
+              <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="idExtractor">
+                <stringProp name="JSONPostProcessor.referenceNames">sum_ids</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[*].id</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
                 <stringProp name="JSONPostProcessor.defaultValues">value_not_found</stringProp>
               </JSONPostProcessor>
               <hashTree/>
             </hashTree>
-            <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
-              <intProp name="LoopController.loops">-1</intProp>
-            </LoopController>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.3.2 Get report" enabled="true">
+              <stringProp name="HTTPSampler.domain">${host}</stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+              <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/data</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="term_id" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">${term_id}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                    <stringProp name="Argument.name">term_id</stringProp>
+                  </elementProp>
+                  <elementProp name="report_template_id" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">${report_template_id}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                    <stringProp name="Argument.name">report_template_id</stringProp>
+                  </elementProp>
+                  <elementProp name="report_type" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">${by_asset_category}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                    <stringProp name="Argument.name">report_type</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
             <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.4.2 Export to CSV report - by asset type - async job" enabled="true">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">cookie</stringProp>
+                    <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">x-csrf-token</stringProp>
+                    <stringProp name="Header.value">${csrfToken}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">content-type</stringProp>
+                    <stringProp name="Header.value">application/json</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">origin</stringProp>
+                    <stringProp name="Header.value">${origin}</stringProp>
+                  </elementProp>
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">referer</stringProp>
+                    <stringProp name="Header.value">${origin}/asset</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                <stringProp name="ConstantTimer.delay">10000</stringProp>
+              </ConstantTimer>
+              <hashTree/>
+            </hashTree>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2.3.3 Export to PDF report - by AC" enabled="true">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+            </TransactionController>
+            <hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.3.3.1 Export to PDF report - by AC">
                 <stringProp name="HTTPSampler.domain">${host}</stringProp>
                 <stringProp name="HTTPSampler.protocol">https</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-                <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/job/${async_id}</stringProp>
+                <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/export</stringProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                 <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-                  <collectionProp name="Arguments.arguments"/>
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="term_id" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${term_id}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">term_id</stringProp>
+                    </elementProp>
+                    <elementProp name="report_template_id" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${report_template_id}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">report_template_id</stringProp>
+                    </elementProp>
+                    <elementProp name="export_file_format" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${pdf_format}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">export_file_format</stringProp>
+                    </elementProp>
+                    <elementProp name="charset" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${charset}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">charset</stringProp>
+                    </elementProp>
+                    <elementProp name="report_type" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${by_asset_category}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">report_type</stringProp>
+                    </elementProp>
+                    <elementProp name="sum_ids" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${sum_ids}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">sum_ids</stringProp>
+                    </elementProp>
+                  </collectionProp>
                 </elementProp>
               </HTTPSamplerProxy>
               <hashTree>
@@ -1884,593 +1864,252 @@ if (csvFile.canWrite()) {
                   <stringProp name="ConstantTimer.delay">10000</stringProp>
                 </ConstantTimer>
                 <hashTree/>
-                <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="statusExtractor" enabled="true">
-                  <stringProp name="JSONPostProcessor.referenceNames">status</stringProp>
-                  <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.status</stringProp>
+                <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="asyncExtractor" enabled="true">
+                  <stringProp name="JSONPostProcessor.referenceNames">async_id</stringProp>
+                  <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
                   <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
                   <stringProp name="JSONPostProcessor.defaultValues">value_not_found</stringProp>
                 </JSONPostProcessor>
                 <hashTree/>
               </hashTree>
-              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
-                <stringProp name="IfController.condition">&quot;${status}&quot; != &quot;WAITING&quot;</stringProp>
-                <boolProp name="IfController.evaluateAll">false</boolProp>
-                <boolProp name="IfController.useExpression">false</boolProp>
-              </IfController>
+              <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+                <intProp name="LoopController.loops">-1</intProp>
+              </LoopController>
               <hashTree>
-                <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-                  <intProp name="ActionProcessor.action">5</intProp>
-                  <intProp name="ActionProcessor.target">0</intProp>
-                  <stringProp name="ActionProcessor.duration">0</stringProp>
-                </TestAction>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.3.3.2 Export to PDF report - by AC - async job" enabled="true">
+                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
+                  <stringProp name="HTTPSampler.protocol">https</stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+                  <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/job/${async_id}</stringProp>
+                  <stringProp name="HTTPSampler.method">GET</stringProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                    <collectionProp name="Arguments.arguments"/>
+                  </elementProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                    <collectionProp name="HeaderManager.headers">
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">cookie</stringProp>
+                        <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">x-csrf-token</stringProp>
+                        <stringProp name="Header.value">${csrfToken}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">content-type</stringProp>
+                        <stringProp name="Header.value">application/json</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">origin</stringProp>
+                        <stringProp name="Header.value">${origin}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">referer</stringProp>
+                        <stringProp name="Header.value">${origin}/asset</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </HeaderManager>
+                  <hashTree/>
+                  <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                    <stringProp name="ConstantTimer.delay">10000</stringProp>
+                  </ConstantTimer>
+                  <hashTree/>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="statusExtractor" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">status</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.status</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                    <stringProp name="JSONPostProcessor.defaultValues">value_not_found</stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                </hashTree>
+                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+                  <stringProp name="IfController.condition">&quot;${status}&quot; != &quot;WAITING&quot;</stringProp>
+                  <boolProp name="IfController.evaluateAll">false</boolProp>
+                  <boolProp name="IfController.useExpression">false</boolProp>
+                </IfController>
+                <hashTree>
+                  <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+                    <intProp name="ActionProcessor.action">5</intProp>
+                    <intProp name="ActionProcessor.target">0</intProp>
+                    <stringProp name="ActionProcessor.duration">0</stringProp>
+                  </TestAction>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+            </hashTree>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2.3.4 Export to CSV report - by AC" enabled="true">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+            </TransactionController>
+            <hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.3.4.1 Export to CSV report - by AC" enabled="true">
+                <stringProp name="HTTPSampler.domain">${host}</stringProp>
+                <stringProp name="HTTPSampler.protocol">https</stringProp>
+                <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+                <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/export</stringProp>
+                <stringProp name="HTTPSampler.method">GET</stringProp>
+                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="term_id" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${term_id}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">term_id</stringProp>
+                    </elementProp>
+                    <elementProp name="report_template_id" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${report_template_id}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">report_template_id</stringProp>
+                    </elementProp>
+                    <elementProp name="export_file_format" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${pdf_format}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">export_file_format</stringProp>
+                    </elementProp>
+                    <elementProp name="charset" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${charset}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">charset</stringProp>
+                    </elementProp>
+                    <elementProp name="report_type" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${by_asset_type}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">report_type</stringProp>
+                    </elementProp>
+                    <elementProp name="sum_ids" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${sum_ids}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">sum_ids</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </elementProp>
+              </HTTPSamplerProxy>
+              <hashTree>
+                <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                  <stringProp name="ConstantTimer.delay">10000</stringProp>
+                </ConstantTimer>
                 <hashTree/>
+                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                  <collectionProp name="HeaderManager.headers">
+                    <elementProp name="" elementType="Header">
+                      <stringProp name="Header.name">cookie</stringProp>
+                      <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
+                    </elementProp>
+                    <elementProp name="" elementType="Header">
+                      <stringProp name="Header.name">x-csrf-token</stringProp>
+                      <stringProp name="Header.value">${csrfToken}</stringProp>
+                    </elementProp>
+                    <elementProp name="" elementType="Header">
+                      <stringProp name="Header.name">content-type</stringProp>
+                      <stringProp name="Header.value">application/json</stringProp>
+                    </elementProp>
+                    <elementProp name="" elementType="Header">
+                      <stringProp name="Header.name">origin</stringProp>
+                      <stringProp name="Header.value">${origin}</stringProp>
+                    </elementProp>
+                    <elementProp name="" elementType="Header">
+                      <stringProp name="Header.name">referer</stringProp>
+                      <stringProp name="Header.value">${origin}/asset</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </HeaderManager>
+                <hashTree/>
+                <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="asyncExtractor" enabled="true">
+                  <stringProp name="JSONPostProcessor.referenceNames">async_id</stringProp>
+                  <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
+                  <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                  <stringProp name="JSONPostProcessor.defaultValues">value_not_found</stringProp>
+                </JSONPostProcessor>
+                <hashTree/>
+              </hashTree>
+              <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+                <intProp name="LoopController.loops">-1</intProp>
+              </LoopController>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2.3.4.2 Export to CSV report - by AC - async job" enabled="true">
+                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
+                  <stringProp name="HTTPSampler.protocol">https</stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+                  <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/job/${async_id}</stringProp>
+                  <stringProp name="HTTPSampler.method">GET</stringProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                    <collectionProp name="Arguments.arguments"/>
+                  </elementProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                    <collectionProp name="HeaderManager.headers">
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">cookie</stringProp>
+                        <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">x-csrf-token</stringProp>
+                        <stringProp name="Header.value">${csrfToken}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">content-type</stringProp>
+                        <stringProp name="Header.value">application/json</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">origin</stringProp>
+                        <stringProp name="Header.value">${origin}</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">referer</stringProp>
+                        <stringProp name="Header.value">${origin}/asset</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </HeaderManager>
+                  <hashTree/>
+                  <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                    <stringProp name="ConstantTimer.delay">10000</stringProp>
+                  </ConstantTimer>
+                  <hashTree/>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="statusExtractor" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">status</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.status</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                    <stringProp name="JSONPostProcessor.defaultValues">value_not_found</stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                </hashTree>
+                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+                  <stringProp name="IfController.condition">&quot;${status}&quot; != &quot;WAITING&quot;</stringProp>
+                  <boolProp name="IfController.evaluateAll">false</boolProp>
+                  <boolProp name="IfController.useExpression">false</boolProp>
+                </IfController>
+                <hashTree>
+                  <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+                    <intProp name="ActionProcessor.action">5</intProp>
+                    <intProp name="ActionProcessor.target">0</intProp>
+                    <stringProp name="ActionProcessor.duration">0</stringProp>
+                  </TestAction>
+                  <hashTree/>
+                </hashTree>
               </hashTree>
             </hashTree>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="3. By asset category" enabled="false">
-          <boolProp name="TransactionController.parent">true</boolProp>
-          <boolProp name="TransactionController.includeTimers">false</boolProp>
-        </TransactionController>
-        <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.1 Get asset category associated to the corporate report" enabled="true">
-            <stringProp name="HTTPSampler.domain">${host}</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
-            <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-            <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/asset_categories</stringProp>
-            <stringProp name="HTTPSampler.method">GET</stringProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-              <collectionProp name="Arguments.arguments">
-                <elementProp name="term_id" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">${term_id}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">term_id</stringProp>
-                </elementProp>
-                <elementProp name="report_template_id" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">${report_template_id}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">report_template_id</stringProp>
-                </elementProp>
-              </collectionProp>
-            </elementProp>
-          </HTTPSamplerProxy>
-          <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-              <collectionProp name="HeaderManager.headers">
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">cookie</stringProp>
-                  <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
-                </elementProp>
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">x-csrf-token</stringProp>
-                  <stringProp name="Header.value">${csrfToken}</stringProp>
-                </elementProp>
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">content-type</stringProp>
-                  <stringProp name="Header.value">application/json</stringProp>
-                </elementProp>
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">origin</stringProp>
-                  <stringProp name="Header.value">${origin}</stringProp>
-                </elementProp>
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">referer</stringProp>
-                  <stringProp name="Header.value">${origin}/asset</stringProp>
-                </elementProp>
-              </collectionProp>
-            </HeaderManager>
-            <hashTree/>
-            <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-              <stringProp name="ConstantTimer.delay">10000</stringProp>
-            </ConstantTimer>
-            <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="idExtractor" enabled="true">
-              <stringProp name="JSONPostProcessor.referenceNames">id</stringProp>
-              <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[*].id</stringProp>
-              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
-              <stringProp name="JSONPostProcessor.defaultValues">value_not_found</stringProp>
-            </JSONPostProcessor>
-            <hashTree/>
-          </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="3.2 Preview report - by AC" enabled="false">
-            <boolProp name="TransactionController.parent">true</boolProp>
-            <boolProp name="TransactionController.includeTimers">false</boolProp>
-          </TransactionController>
-          <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.2.1 Get report - by AC - page 1" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.protocol">https</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-              <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/data</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="term_id" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${term_id}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">term_id</stringProp>
-                  </elementProp>
-                  <elementProp name="report_template_id" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${report_template_id}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_template_id</stringProp>
-                  </elementProp>
-                  <elementProp name="report_type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${by_asset_category}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_type</stringProp>
-                  </elementProp>
-                  <elementProp name="asset_category_ids" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${id_1},${id_2},${id_3},${id_4}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">asset_category_ids</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                <collectionProp name="HeaderManager.headers">
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">cookie</stringProp>
-                    <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">x-csrf-token</stringProp>
-                    <stringProp name="Header.value">${csrfToken}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">content-type</stringProp>
-                    <stringProp name="Header.value">application/json</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">origin</stringProp>
-                    <stringProp name="Header.value">${origin}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">referer</stringProp>
-                    <stringProp name="Header.value">${origin}/asset</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </HeaderManager>
-              <hashTree/>
-              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                <stringProp name="ConstantTimer.delay">10000</stringProp>
-              </ConstantTimer>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.2.2 Get report - by AC - page 2" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.protocol">https</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-              <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/data</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="term_id" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${term_id}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">term_id</stringProp>
-                  </elementProp>
-                  <elementProp name="report_template_id" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${report_template_id}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_template_id</stringProp>
-                  </elementProp>
-                  <elementProp name="report_type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${by_asset_category}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_type</stringProp>
-                  </elementProp>
-                  <elementProp name="asset_category_ids" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${id_5},${id_6},${id_7},${id_8}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">asset_category_ids</stringProp>
-                  </elementProp>
-                  <elementProp name="sum_ids" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${id_1},${id_2},${id_3},${id_4},${id_5},${id_6},${id_7},${id_8}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">sum_ids</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                <collectionProp name="HeaderManager.headers">
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">cookie</stringProp>
-                    <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">x-csrf-token</stringProp>
-                    <stringProp name="Header.value">${csrfToken}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">content-type</stringProp>
-                    <stringProp name="Header.value">application/json</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">origin</stringProp>
-                    <stringProp name="Header.value">${origin}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">referer</stringProp>
-                    <stringProp name="Header.value">${origin}/asset</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </HeaderManager>
-              <hashTree/>
-              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                <stringProp name="ConstantTimer.delay">10000</stringProp>
-              </ConstantTimer>
-              <hashTree/>
-            </hashTree>
-          </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="3.3 Export to PDF report - by AC" enabled="true">
-            <boolProp name="TransactionController.parent">true</boolProp>
-            <boolProp name="TransactionController.includeTimers">false</boolProp>
-          </TransactionController>
-          <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.3.1 Export to PDF report - by AC" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.protocol">https</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-              <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/export</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="term_id" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${term_id}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">term_id</stringProp>
-                  </elementProp>
-                  <elementProp name="report_template_id" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${report_template_id}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_template_id</stringProp>
-                  </elementProp>
-                  <elementProp name="export_file_format" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${pdf_format}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">export_file_format</stringProp>
-                  </elementProp>
-                  <elementProp name="charset" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${charset}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">charset</stringProp>
-                  </elementProp>
-                  <elementProp name="report_type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${by_asset_category}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_type</stringProp>
-                  </elementProp>
-                  <elementProp name="sum_ids" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${sum_ids}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">sum_ids</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                <collectionProp name="HeaderManager.headers">
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">cookie</stringProp>
-                    <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">x-csrf-token</stringProp>
-                    <stringProp name="Header.value">${csrfToken}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">content-type</stringProp>
-                    <stringProp name="Header.value">application/json</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">origin</stringProp>
-                    <stringProp name="Header.value">${origin}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">referer</stringProp>
-                    <stringProp name="Header.value">${origin}/asset</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </HeaderManager>
-              <hashTree/>
-              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                <stringProp name="ConstantTimer.delay">10000</stringProp>
-              </ConstantTimer>
-              <hashTree/>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="asyncExtractor" enabled="true">
-                <stringProp name="JSONPostProcessor.referenceNames">async_id</stringProp>
-                <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
-                <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
-                <stringProp name="JSONPostProcessor.defaultValues">value_not_found</stringProp>
-              </JSONPostProcessor>
-              <hashTree/>
-            </hashTree>
-            <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
-              <intProp name="LoopController.loops">-1</intProp>
-            </LoopController>
-            <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.3.2 Export to PDF report - by AC - async job" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.protocol">https</stringProp>
-                <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-                <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/job/${async_id}</stringProp>
-                <stringProp name="HTTPSampler.method">GET</stringProp>
-                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-                  <collectionProp name="Arguments.arguments"/>
-                </elementProp>
-              </HTTPSamplerProxy>
-              <hashTree>
-                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                  <collectionProp name="HeaderManager.headers">
-                    <elementProp name="" elementType="Header">
-                      <stringProp name="Header.name">cookie</stringProp>
-                      <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
-                    </elementProp>
-                    <elementProp name="" elementType="Header">
-                      <stringProp name="Header.name">x-csrf-token</stringProp>
-                      <stringProp name="Header.value">${csrfToken}</stringProp>
-                    </elementProp>
-                    <elementProp name="" elementType="Header">
-                      <stringProp name="Header.name">content-type</stringProp>
-                      <stringProp name="Header.value">application/json</stringProp>
-                    </elementProp>
-                    <elementProp name="" elementType="Header">
-                      <stringProp name="Header.name">origin</stringProp>
-                      <stringProp name="Header.value">${origin}</stringProp>
-                    </elementProp>
-                    <elementProp name="" elementType="Header">
-                      <stringProp name="Header.name">referer</stringProp>
-                      <stringProp name="Header.value">${origin}/asset</stringProp>
-                    </elementProp>
-                  </collectionProp>
-                </HeaderManager>
-                <hashTree/>
-                <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                  <stringProp name="ConstantTimer.delay">10000</stringProp>
-                </ConstantTimer>
-                <hashTree/>
-                <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="statusExtractor" enabled="true">
-                  <stringProp name="JSONPostProcessor.referenceNames">status</stringProp>
-                  <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.status</stringProp>
-                  <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
-                  <stringProp name="JSONPostProcessor.defaultValues">value_not_found</stringProp>
-                </JSONPostProcessor>
-                <hashTree/>
-              </hashTree>
-              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
-                <stringProp name="IfController.condition">&quot;${status}&quot; != &quot;WAITING&quot;</stringProp>
-                <boolProp name="IfController.evaluateAll">false</boolProp>
-                <boolProp name="IfController.useExpression">false</boolProp>
-              </IfController>
-              <hashTree>
-                <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-                  <intProp name="ActionProcessor.action">5</intProp>
-                  <intProp name="ActionProcessor.target">0</intProp>
-                  <stringProp name="ActionProcessor.duration">0</stringProp>
-                </TestAction>
-                <hashTree/>
-              </hashTree>
-            </hashTree>
-          </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="3.4 Export to CSV report - by AC" enabled="false">
-            <boolProp name="TransactionController.parent">true</boolProp>
-            <boolProp name="TransactionController.includeTimers">false</boolProp>
-          </TransactionController>
-          <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.4.1 Export to CSV report - by AC" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.protocol">https</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-              <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/export</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="term_id" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${term_id}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">term_id</stringProp>
-                  </elementProp>
-                  <elementProp name="report_template_id" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${report_template_id}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_template_id</stringProp>
-                  </elementProp>
-                  <elementProp name="export_file_format" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${pdf_format}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">export_file_format</stringProp>
-                  </elementProp>
-                  <elementProp name="charset" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${charset}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">charset</stringProp>
-                  </elementProp>
-                  <elementProp name="report_type" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${by_asset_type}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">report_type</stringProp>
-                  </elementProp>
-                  <elementProp name="sum_ids" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">${sum_ids}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    <stringProp name="Argument.name">sum_ids</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                <stringProp name="ConstantTimer.delay">10000</stringProp>
-              </ConstantTimer>
-              <hashTree/>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                <collectionProp name="HeaderManager.headers">
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">cookie</stringProp>
-                    <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">x-csrf-token</stringProp>
-                    <stringProp name="Header.value">${csrfToken}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">content-type</stringProp>
-                    <stringProp name="Header.value">application/json</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">origin</stringProp>
-                    <stringProp name="Header.value">${origin}</stringProp>
-                  </elementProp>
-                  <elementProp name="" elementType="Header">
-                    <stringProp name="Header.name">referer</stringProp>
-                    <stringProp name="Header.value">${origin}/asset</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </HeaderManager>
-              <hashTree/>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="asyncExtractor" enabled="true">
-                <stringProp name="JSONPostProcessor.referenceNames">async_id</stringProp>
-                <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.id</stringProp>
-                <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
-                <stringProp name="JSONPostProcessor.defaultValues">value_not_found</stringProp>
-              </JSONPostProcessor>
-              <hashTree/>
-            </hashTree>
-            <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
-              <intProp name="LoopController.loops">-1</intProp>
-            </LoopController>
-            <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3.4.2 Export to CSV report - by AC - async job" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.protocol">https</stringProp>
-                <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-                <stringProp name="HTTPSampler.path">api/v1/reports/corporate_tax/job/${async_id}</stringProp>
-                <stringProp name="HTTPSampler.method">GET</stringProp>
-                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-                  <collectionProp name="Arguments.arguments"/>
-                </elementProp>
-              </HTTPSamplerProxy>
-              <hashTree>
-                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                  <collectionProp name="HeaderManager.headers">
-                    <elementProp name="" elementType="Header">
-                      <stringProp name="Header.name">cookie</stringProp>
-                      <stringProp name="Header.value">aa_jwt_access=${cookieOffice}</stringProp>
-                    </elementProp>
-                    <elementProp name="" elementType="Header">
-                      <stringProp name="Header.name">x-csrf-token</stringProp>
-                      <stringProp name="Header.value">${csrfToken}</stringProp>
-                    </elementProp>
-                    <elementProp name="" elementType="Header">
-                      <stringProp name="Header.name">content-type</stringProp>
-                      <stringProp name="Header.value">application/json</stringProp>
-                    </elementProp>
-                    <elementProp name="" elementType="Header">
-                      <stringProp name="Header.name">origin</stringProp>
-                      <stringProp name="Header.value">${origin}</stringProp>
-                    </elementProp>
-                    <elementProp name="" elementType="Header">
-                      <stringProp name="Header.name">referer</stringProp>
-                      <stringProp name="Header.value">${origin}/asset</stringProp>
-                    </elementProp>
-                  </collectionProp>
-                </HeaderManager>
-                <hashTree/>
-                <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                  <stringProp name="ConstantTimer.delay">10000</stringProp>
-                </ConstantTimer>
-                <hashTree/>
-                <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="statusExtractor" enabled="true">
-                  <stringProp name="JSONPostProcessor.referenceNames">status</stringProp>
-                  <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.status</stringProp>
-                  <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
-                  <stringProp name="JSONPostProcessor.defaultValues">value_not_found</stringProp>
-                </JSONPostProcessor>
-                <hashTree/>
-              </hashTree>
-              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
-                <stringProp name="IfController.condition">&quot;${status}&quot; != &quot;WAITING&quot;</stringProp>
-                <boolProp name="IfController.evaluateAll">false</boolProp>
-                <boolProp name="IfController.useExpression">false</boolProp>
-              </IfController>
-              <hashTree>
-                <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-                  <intProp name="ActionProcessor.action">5</intProp>
-                  <intProp name="ActionProcessor.target">0</intProp>
-                  <stringProp name="ActionProcessor.duration">0</stringProp>
-                </TestAction>
-                <hashTree/>
-              </hashTree>
-            </hashTree>
-          </hashTree>
-        </hashTree>
-        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="4. Logout" enabled="false"/>
+        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="3. Logout" enabled="false"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Logout" enabled="true">
             <stringProp name="HTTPSampler.domain">${host}</stringProp>
