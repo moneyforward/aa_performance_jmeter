@@ -65,7 +65,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables STG">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables STG" enabled="true">
         <collectionProp name="Arguments.arguments">
           <elementProp name="mfid_host" elementType="Argument">
             <stringProp name="Argument.name">mfid_host</stringProp>
@@ -221,14 +221,14 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager - Inherit cookie">
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager - Inherit cookie" enabled="true">
           <collectionProp name="CookieManager.cookies"/>
           <boolProp name="CookieManager.clearEachIteration">false</boolProp>
           <boolProp name="CookieManager.controlledByThreadGroup">true</boolProp>
           <stringProp name="CookieManager.policy">standard-strict</stringProp>
         </CookieManager>
         <hashTree/>
-        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="1. Login"/>
+        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="1. Login" enabled="true"/>
         <hashTree>
           <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="loginData" enabled="true">
             <stringProp name="TestPlan.comments">CSV file that must contains rows with 2 columns separated by comma, first column will be mapped to login, second one to password</stringProp>
@@ -1224,7 +1224,7 @@ if (csvFile.canWrite()) {
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2. Export report">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2. Export report" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -1573,7 +1573,7 @@ if (csvFile.canWrite()) {
               <hashTree/>
             </hashTree>
           </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2.3 Export to PDF report - by asset type">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="2.3 Export to PDF report - by asset type" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
@@ -2601,7 +2601,7 @@ if (csvFile.canWrite()) {
         <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table">
+      <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
